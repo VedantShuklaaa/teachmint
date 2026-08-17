@@ -56,20 +56,13 @@ export function ImageMarquee() {
 			onMouseEnter={() => setPaused(true)}
 			onMouseLeave={() => setPaused(false)}
 		>
-			<div
-				className="pointer-events-none absolute left-0 top-0 h-full w-32 z-10 backdrop-blur-xl"
-				style={{ maskImage: "linear-gradient(to right, black, transparent)", WebkitMaskImage: "linear-gradient(to right, black, transparent)" }}
-			/>
-
-			<div
-				className="pointer-events-none absolute right-0 top-0 h-full w-32 z-10 backdrop-blur-xl"
-				style={{ maskImage: "linear-gradient(to left, black, transparent)", WebkitMaskImage: "linear-gradient(to left, black, transparent)" }}
-			/>
+			<div className="pointer-events-none absolute left-0 top-0 h-full w-32 z-10 bg-gradient-to-r from-background to-transparent" />
+			<div className="pointer-events-none absolute right-0 top-0 h-full w-32 z-10 bg-gradient-to-l from-background to-transparent" />
 
 			<motion.div ref={trackRef} className="flex items-start gap-6 w-max" style={{ x }}>
 				{[...marqueeItems, ...marqueeItems].map((item, i) => (
 					<div key={i} className="flex flex-col items-center gap-2 shrink-0 w-42 cursor-pointer">
-						<div className="w-42 h-42 relative rounded-xl border border-black/10 bg-foreground/5 overflow-hidden p-3">
+						<div className="w-42 h-42 relative rounded-xl border border-black/10 bg-white overflow-hidden p-3">
 							<Image
 								src={item.src}
 								alt={item.alt}

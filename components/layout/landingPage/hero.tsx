@@ -48,7 +48,7 @@ export default function Hero() {
 
 				<div className="w-full mx-auto rounded-xl overflow-hidden border border-slate-100 dark:border-slate-700">
 					<video
-						className="w-full h-full"
+						className="w-full h-full rounded-xl"
 						autoPlay
 						muted
 						loop

@@ -17,6 +17,8 @@ interface SoftAuroraProps {
   colorSpeed?: number;
   enableMouseInteraction?: boolean;
   mouseInfluence?: number;
+  maxAlpha?: number; 
+  opacity?: number; 
 }
 
 function hexToVec3(hex: string): [number, number, number] {
@@ -58,6 +60,7 @@ uniform float uColorSpeed;
 uniform vec2 uMouse;
 uniform float uMouseInfluence;
 uniform bool uEnableMouse;
+uniform float uMaxAlpha;
 
 #define TAU 6.28318
 
@@ -156,7 +159,7 @@ void main() {
   col += 0.99 * auroraGlow(t + uLayerOffset, shift) * cosineGradient(uv.x + uTime * uSpeed * 0.1 * uColorSpeed, vec3(0.5), vec3(0.5), vec3(2.0, 1.0, 0.0), vec3(0.5, 0.20, 0.25)) * uColor2;
 
   col *= uBrightness;
-  float alpha = clamp(length(col), 0.0, 1.0);
+  float alpha = clamp(length(col), 0.0, uMaxAlpha);
   gl_FragColor = vec4(col, alpha);
 }
 `;
@@ -175,7 +178,9 @@ export default function SoftAurora({
   layerOffset = 0,
   colorSpeed = 1.0,
   enableMouseInteraction = true,
-  mouseInfluence = 0.25
+  mouseInfluence = 0.25,
+  maxAlpha = 0.5,
+  opacity = 1
 }: SoftAuroraProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -211,6 +216,12 @@ export default function SoftAurora({
     window.addEventListener('resize', resize);
     resize();
 
+    gl.canvas.style.position = 'absolute';
+    gl.canvas.style.inset = '0';
+    gl.canvas.style.width = '100%';
+    gl.canvas.style.height = '100%';
+    gl.canvas.style.pointerEvents = 'none';
+
     const geometry = new Triangle(gl);
     program = new Program(gl, {
       vertex: vertexShader,
@@ -232,7 +243,8 @@ export default function SoftAurora({
         uColorSpeed: { value: colorSpeed },
         uMouse: { value: new Float32Array([0.5, 0.5]) },
         uMouseInfluence: { value: mouseInfluence },
-        uEnableMouse: { value: enableMouseInteraction }
+        uEnableMouse: { value: enableMouseInteraction },
+        uMaxAlpha: { value: Math.min(Math.max(maxAlpha, 0), 1) }
       }
     });
 
@@ -240,8 +252,8 @@ export default function SoftAurora({
     container.appendChild(gl.canvas);
 
     if (enableMouseInteraction) {
-      gl.canvas.addEventListener('mousemove', handleMouseMove);
-      gl.canvas.addEventListener('mouseleave', handleMouseLeave);
+      window.addEventListener('mousemove', handleMouseMove);
+      container.addEventListener('mouseleave', handleMouseLeave);
     }
 
     let animationFrameId: number;
@@ -268,13 +280,19 @@ export default function SoftAurora({
       cancelAnimationFrame(animationFrameId);
       window.removeEventListener('resize', resize);
       if (enableMouseInteraction) {
-        gl.canvas.removeEventListener('mousemove', handleMouseMove);
-        gl.canvas.removeEventListener('mouseleave', handleMouseLeave);
+        window.removeEventListener('mousemove', handleMouseMove);
+        container.removeEventListener('mouseleave', handleMouseLeave);
       }
       container.removeChild(gl.canvas);
       gl.getExtension('WEBGL_lose_context')?.loseContext();
     };
-  }, [speed, scale, brightness, color1, color2, noiseFrequency, noiseAmplitude, bandHeight, bandSpread, octaveDecay, layerOffset, colorSpeed, enableMouseInteraction, mouseInfluence]);
+  }, [speed, scale, brightness, color1, color2, noiseFrequency, noiseAmplitude, bandHeight, bandSpread, octaveDecay, layerOffset, colorSpeed, enableMouseInteraction, mouseInfluence, maxAlpha]);
 
-  return <div ref={containerRef} className="w-full h-full" />;
+  return (
+    <div
+      ref={containerRef}
+      className="w-full h-full"
+      style={{ position: 'relative', opacity, pointerEvents: 'none' }}
+    />
+  );
 }
