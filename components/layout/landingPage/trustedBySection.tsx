@@ -11,13 +11,13 @@ export default function TrustedBySection() {
 					hoverIntensity={2}
 					rotateOnHover
 					forceHoverState={false}
-					backgroundColor="#ffffff"
+					backgroundColor="#000000"
 				/>
 			</div>
-			<div className="h-[40vh] w-[65vw] mx-auto flex flex-col justify-center py-2 mt-[14vh] gap-4 overflow-hidden">
-				<h1 className="text-3xl leading-none max-w-4xl text-left">
+			<div className="w-[65vw] mx-auto flex flex-col justify-start py-2 gap-4 overflow-hidden">
+				<h1 className="text-xl leading-[1.1] max-w-4xl text-left">
 					Trusted by Leading <br />
-					<span className="text-zinc-500">Educational Institutions</span>
+					<span className="text-zinc-600">Educational Institutions</span>
 				</h1>
 				<ImageMarquee />
 			</div>

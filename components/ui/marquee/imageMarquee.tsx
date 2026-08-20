@@ -61,8 +61,8 @@ export function ImageMarquee() {
 
 			<motion.div ref={trackRef} className="flex items-start gap-6 w-max" style={{ x }}>
 				{[...marqueeItems, ...marqueeItems].map((item, i) => (
-					<div key={i} className="flex flex-col items-center gap-2 shrink-0 w-42 cursor-pointer">
-						<div className="w-42 h-42 relative rounded-xl border border-black/10 bg-white overflow-hidden p-3">
+					<div key={i} className="flex flex-col items-center gap-1 shrink-0 w-42 cursor-pointer">
+						<div className="w-30 h-30 relative rounded-xl border border-black/10 bg-white overflow-hidden p-3">
 							<Image
 								src={item.src}
 								alt={item.alt}

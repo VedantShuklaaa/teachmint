@@ -6,13 +6,14 @@ import { CloudShader } from "@/components/ui/cloud-shader";
 import SpotlightText from "@/components/ui/text/spotlightTextRevealEffect";
 import { motion } from "motion/react"
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 export default function Home() {
   return (
     <main>
       <Hero />
       <TrustedBySection />
-      <section className="h-screen w-full flex flex-col">
+      {/*<section className="h-screen w-full flex flex-col">
         <div className="w-[65vw] mx-auto mt-[14vh] flex-1 flex flex-col gap-4 min-h-0">
           <h1 className="text-3xl leading-none shrink-0">
             Google EDLA Certified <br />
@@ -21,12 +22,12 @@ export default function Home() {
 
           <div className="flex-1 w-full flex flex-col gap-2 min-h-0">
             <div className="flex-1 w-full flex gap-2 min-h-0">
-              <div className="h-full w-[60%] rounded-xl bg-[#f5f2f0] overflow-hidden relative">
+              <div className="h-full w-[60%] rounded-xl bg-[#E8E5E3] overflow-hidden relative">
                 <div className="absolute text-5xl font-bold tracking-tight leading-none text-white sm:text-8xl w-full flex items-center justify-center" style={{ lineHeight: 0.88 }}>
                   <SpotlightText
                     text="GOOGLE EDLA CERTIFIED FOR A TRUE GOOGLE EXPERIENCE"
                     className="text-5xl font-bold tracking-tight leading-none text-white sm:text-8xl"
-                    radius={160}
+                    radius={400}
                     gradient="linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335)"
                     autoPlay
                     speed={160}
@@ -48,31 +49,104 @@ export default function Home() {
             </div>
 
             <div className="flex-1 w-full flex gap-2 min-h-0">
-              <div className="h-full w-full rounded-xl bg-[#f5f2f0] overflow-hidden relative flex items-center justify-center">
-                <div className="text-5xl font-bold tracking-tight leading-none text-slate-800 sm:text-[4.2rem]" style={{lineHeight: 0.85}}>
-                  <p>
-                    Access your favorite apps on our Digital Board.
-                  </p>
-                </div>
-
-                <Image
-                  src="/elements/PlaystoreColoredMaterial.svg"
-                  alt="Teachmint mobile app screenshot"
-                  height={60}
-                  width={60}
-                  className="object-cover absolute right-4 bottom-4"
-                />
-              </div>
-              <div className="h-full w-full rounded-xl bg-[#f5f2f0] overflow-hidden">
-
-              </div>
+              <DigitalBoardCard />
+              <DigitalBoardCard2 />
               <div className="h-full w-full rounded-xl bg-[#f5f2f0] overflow-hidden">
 
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </section>*/}
     </main >
+  );
+}
+
+export function DigitalBoardCard() {
+  return (
+    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
+      <div
+        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
+        style={{ lineHeight: 0.85 }}
+      >
+        <p>Access your favorite apps on our Digital Board.</p>
+      </div>
+
+      <motion.div
+        className="absolute z-10"
+        initial={{ filter: "blur(0px)" }}
+        whileInView={{ filter: "blur(12px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <Image
+          src="/elements/PlaystoreColoredMaterial.svg"
+          alt="Teachmint mobile app screenshot"
+          height={250}
+          width={250}
+          className="object-cover"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+
+export function DigitalBoardCard2() {
+  return (
+    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
+      <div
+        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
+        style={{ lineHeight: 0.85 }}
+      >
+        <p>Authentic, future-ready classroom experience.</p>
+      </div>
+
+      <motion.div
+        className="absolute z-10"
+        initial={{ filter: "blur(0px)" }}
+        whileInView={{ filter: "blur(12px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <Image
+          src="/elements/androidLight.svg"
+          alt="Teachmint mobile app screenshot"
+          height={250}
+          width={250}
+          className="object-cover"
+        />
+      </motion.div>
+    </div>
+  );
+}
+
+
+export function DigitalBoardCard3() {
+  return (
+    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
+      <div
+        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
+        style={{ lineHeight: 0.85 }}
+      >
+        <p>Authentic, future-ready classroom experience.</p>
+      </div>
+
+      <motion.div
+        className="absolute z-10"
+        initial={{ filter: "blur(0px)" }}
+        whileInView={{ filter: "blur(12px)" }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
+        <Image
+          src="/elements/androidLight.svg"
+          alt="Teachmint mobile app screenshot"
+          height={250}
+          width={250}
+          className="object-cover"
+        />
+      </motion.div>
+    </div>
   );
 }

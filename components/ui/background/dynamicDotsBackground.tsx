@@ -29,14 +29,16 @@ interface DotFieldProps {
 	dotColor?: string;
 	dotOpacity?: number;
 	glowBlur?: number;
-	fadeEdges?: boolean; // NEW — enable top/bottom fade mask
-	fadeSize?: number; // NEW — % of height each edge fades over, default 15
+	fadeEdges?: boolean; // vertical (top/bottom) fade
+	fadeSize?: number; // % of height each vertical edge fades over, default 15
+	fadeEdgesX?: boolean; // NEW — enable left/right fade
+	fadeSizeX?: number; // NEW — % of width each horizontal edge fades over, default 15
 	[key: string]: unknown;
 }
 
 const DotField = memo(({
 	dotRadius = 1.5,
-	dotSpacing = 10,
+	dotSpacing = 17,
 	cursorRadius = 500,
 	cursorForce = 0.1,
 	bulgeOnly = true,
@@ -50,7 +52,9 @@ const DotField = memo(({
 	dotOpacity = 0.65,
 	glowBlur = 40,
 	fadeEdges = true,
-	fadeSize = 15,
+	fadeSize = 30,
+	fadeEdgesX = true,
+	fadeSizeX = 15,
 	...rest
 }: DotFieldProps) => {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -64,7 +68,7 @@ const DotField = memo(({
 
 	const isDark = theme === 'dark';
 	const resolvedBackground = backgroundColor ?? (isDark ? '#0a0a0a' : '#ffffff');
-	const resolvedDotColor = dotColor ?? (isDark ? '#ffffff' : '#94A3B8');
+	const resolvedDotColor = dotColor ?? (isDark ? '#F4F4F5' : '#94A3B8');
 	const resolvedOpacity = Math.min(Math.max(dotOpacity, 0), 1);
 
 	const propsRef = useRef<Record<string, unknown>>({});
@@ -281,48 +285,61 @@ const DotField = memo(({
 		rebuildRef.current?.();
 	}, [dotRadius, dotSpacing]);
 
-	const maskImage = fadeEdges
-		? `linear-gradient(to bottom, transparent 0%, black ${fadeSize}%, black ${100 - fadeSize}%, transparent 100%)`
+	const maskImageY = fadeEdges
+		? `linear-gradient(to bottom, transparent 0%, var(--primary) ${fadeSize}%, var(--primary) ${100 - fadeSize}%, transparent 100%)`
+		: undefined;
+
+	const maskImageX = fadeEdgesX
+		? `linear-gradient(to right, transparent 0%, var(--primary) ${fadeSizeX}%, var(--primary) ${100 - fadeSizeX}%, transparent 100%)`
 		: undefined;
 
 	return (
 		<div
-			className="w-full h-full absolute z-1"
+			className="w-full h-full absolute z-1 blur-[1px]"
 			style={
-				fadeEdges
-					? { maskImage, WebkitMaskImage: maskImage }
+				fadeEdgesX
+					? { maskImage: maskImageX, WebkitMaskImage: maskImageX }
 					: undefined
 			}
 			{...rest}
 		>
-			<div className='w-full h-full relative'>
-				<canvas
-					ref={canvasRef}
-					style={{
-						position: 'absolute',
-						inset: 0,
-						width: '100%',
-						height: '100%',
-					}}
-				/>
-				<div
-					ref={glowRef}
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: 0,
-						width: glowRadius * 2,
-						height: glowRadius * 2,
-						borderRadius: '50%',
-						pointerEvents: 'none',
-						opacity: 0,
-						willChange: 'transform, opacity',
-						backdropFilter: `blur(${glowBlur}px)`,
-						WebkitBackdropFilter: `blur(${glowBlur}px)`,
-						maskImage: 'radial-gradient(circle, black 0%, black 40%, transparent 75%)',
-						WebkitMaskImage: 'radial-gradient(circle, black 0%, black 40%, transparent 75%)',
-					}}
-				/>
+			<div
+				className="w-full h-full"
+				style={
+					fadeEdges
+						? { maskImage: maskImageY, WebkitMaskImage: maskImageY }
+						: undefined
+				}
+			>
+				<div className='w-full h-full relative'>
+					<canvas
+						ref={canvasRef}
+						style={{
+							position: 'absolute',
+							inset: 0,
+							width: '100%',
+							height: '100%',
+						}}
+					/>
+					<div
+						ref={glowRef}
+						style={{
+							position: 'absolute',
+							top: 0,
+							left: 0,
+							width: glowRadius * 2,
+							height: glowRadius * 2,
+							borderRadius: '50%',
+							pointerEvents: 'none',
+							opacity: 0,
+							willChange: 'transform, opacity',
+							backdropFilter: `blur(${glowBlur}px)`,
+							WebkitBackdropFilter: `blur(${glowBlur}px)`,
+							maskImage: 'radial-gradient(circle, black 0%, black 40%, transparent 75%)',
+							WebkitMaskImage: 'radial-gradient(circle, black 0%, black 40%, transparent 75%)',
+						}}
+					/>
+				</div>
 			</div>
 		</div>
 	);
