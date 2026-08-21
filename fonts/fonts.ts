@@ -14,3 +14,8 @@ export const inter = Inter({
 	variable: "--font-inter",
 	subsets: ["latin"],
 });
+
+export const times = localFont({
+	src: "./times.woff2",
+	variable: "--font-times",
+});

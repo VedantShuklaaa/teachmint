@@ -1,152 +1,90 @@
 "use client";
 import Hero from "@/components/layout/landingPage/hero";
 import TrustedBySection from "@/components/layout/landingPage/trustedBySection";
+import Orb from "@/components/Orb";
 import InteractiveGridBackground from "@/components/ui/background/interactiveGridBackground";
 import { CloudShader } from "@/components/ui/cloud-shader";
 import SpotlightText from "@/components/ui/text/spotlightTextRevealEffect";
-import { motion } from "motion/react"
+import { motion } from "motion/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
+const CONTAINER_DURATION = 1;
+
+const CERTIFICATIONS = [
+  { src: "/certifications/edla.png", alt: "GOOGLE EDLA certification" },
+  { src: "/certifications/cloud.png", alt: "GOOGLE Cloud certification" },
+  { src: "/certifications/ce.png", alt: "CE certification" },
+  { src: "/certifications/fc.png", alt: "FC certification" },
+  { src: "/certifications/iso.png", alt: "ISO certification" },
+];
+
 export default function Home() {
   return (
-    <main>
-      <Hero />
-      <TrustedBySection />
-      {/*<section className="h-screen w-full flex flex-col">
-        <div className="w-[65vw] mx-auto mt-[14vh] flex-1 flex flex-col gap-4 min-h-0">
-          <h1 className="text-3xl leading-none shrink-0">
-            Google EDLA Certified <br />
-            for a True Google Experience.
-          </h1>
+    <main className="bg-background relative h-screen w-full overflow-hidden">
+      <Image
+        src="/bg-final.png"
+        alt="BACKGROUND IMAGE"
+        height={1080}
+        width={1720}
+        className="absolute -top-15 left-1/2 -translate-x-1/2 object-cover"
+      />
 
-          <div className="flex-1 w-full flex flex-col gap-2 min-h-0">
-            <div className="flex-1 w-full flex gap-2 min-h-0">
-              <div className="h-full w-[60%] rounded-xl bg-[#E8E5E3] overflow-hidden relative">
-                <div className="absolute text-5xl font-bold tracking-tight leading-none text-white sm:text-8xl w-full flex items-center justify-center" style={{ lineHeight: 0.88 }}>
-                  <SpotlightText
-                    text="GOOGLE EDLA CERTIFIED FOR A TRUE GOOGLE EXPERIENCE"
-                    className="text-5xl font-bold tracking-tight leading-none text-white sm:text-8xl"
-                    radius={400}
-                    gradient="linear-gradient(-120deg, #4285f4, #34a853, #fbbc05, #ea4335)"
-                    autoPlay
-                    speed={160}
-                  />
-                </div>
-              </div>
-              <div className="h-full w-[40%] rounded-xl bg-[#f5f2f0] overflow-hidden border border-[#f5f2f0]">
-                <InteractiveGridBackground className="flex min-h-screen items-center justify-center px-6 ">
-                  <div className="text-center">
-                    <h1 className="bg-gradient-to-b from-foreground to-muted-foreground bg-clip-text py-4 text-5xl font-bold tracking-tight text-transparent sm:text-7xl">
-                      Backgrounds
-                    </h1>
-                    <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-                      Move your cursor — the grid darkens around it.
-                    </p>
-                  </div>
-                </InteractiveGridBackground>
-              </div>
-            </div>
+      <motion.div
+        initial={{ scale: 0, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: CONTAINER_DURATION, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 flex flex-col items-center justify-between text-center px-6"
+      >
+        <div />
+        <div className="flex flex-col items-center">
+          <motion.h1
+            initial={{ y: 60, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: CONTAINER_DURATION,
+              ease: [0.22, 1, 0.36, 1],
+            }}
+            className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-white font-[times] max-w-5xl"
+          >
+            <span className="bg-gradient-to-r from-[#ea4335] via-[#fbbc05] via-[#34a853] to-[#4285f4] bg-clip-text text-transparent">
+              Google
+            </span>{" "}
+            EDLA Certified AI-Powered Connected Classroom Device
+          </motion.h1>
 
-            <div className="flex-1 w-full flex gap-2 min-h-0">
-              <DigitalBoardCard />
-              <DigitalBoardCard2 />
-              <div className="h-full w-full rounded-xl bg-[#f5f2f0] overflow-hidden">
-
-              </div>
-            </div>
-          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{
+              duration: 0.8,
+              delay: CONTAINER_DURATION + 0.7,
+              ease: "easeOut",
+            }}
+            className="mt-6 text-lg sm:text-xl text-zinc-300 max-w-2xl font-inter"
+          >
+            Transform teaching and learning with our all-in-one Interactive
+            Whiteboard, which leverages AI &amp; Cloud.
+          </motion.p>
         </div>
-      </section>*/}
-    </main >
-  );
-}
 
-export function DigitalBoardCard() {
-  return (
-    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
-      <div
-        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
-        style={{ lineHeight: 0.85 }}
-      >
-        <p>Access your favorite apps on our Digital Board.</p>
-      </div>
-
-      <motion.div
-        className="absolute z-10"
-        initial={{ filter: "blur(0px)" }}
-        whileInView={{ filter: "blur(12px)" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <Image
-          src="/elements/PlaystoreColoredMaterial.svg"
-          alt="Teachmint mobile app screenshot"
-          height={250}
-          width={250}
-          className="object-cover"
-        />
+        <div className="flex gap-4 mt-8">
+          {CERTIFICATIONS.map((cert) => (
+            <motion.div
+              key={cert.src}
+              className="h-20 w-20 relative shrink-0"
+            >
+              <Image
+                src={cert.src}
+                alt={cert.alt}
+                fill
+                className="object-contain bg-transparent"
+              />
+            </motion.div>
+          ))}
+        </div>
       </motion.div>
-    </div>
-  );
-}
-
-
-export function DigitalBoardCard2() {
-  return (
-    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
-      <div
-        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
-        style={{ lineHeight: 0.85 }}
-      >
-        <p>Authentic, future-ready classroom experience.</p>
-      </div>
-
-      <motion.div
-        className="absolute z-10"
-        initial={{ filter: "blur(0px)" }}
-        whileInView={{ filter: "blur(12px)" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <Image
-          src="/elements/androidLight.svg"
-          alt="Teachmint mobile app screenshot"
-          height={250}
-          width={250}
-          className="object-cover"
-        />
-      </motion.div>
-    </div>
-  );
-}
-
-
-export function DigitalBoardCard3() {
-  return (
-    <div className="h-full w-full rounded-xl bg-[#E8E5E3] overflow-hidden relative flex items-center justify-center">
-      <div
-        className="text-5xl font-bold tracking-tight leading-none text-white sm:text-[4.2rem] z-11"
-        style={{ lineHeight: 0.85 }}
-      >
-        <p>Authentic, future-ready classroom experience.</p>
-      </div>
-
-      <motion.div
-        className="absolute z-10"
-        initial={{ filter: "blur(0px)" }}
-        whileInView={{ filter: "blur(12px)" }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.7, ease: "easeOut" }}
-      >
-        <Image
-          src="/elements/androidLight.svg"
-          alt="Teachmint mobile app screenshot"
-          height={250}
-          width={250}
-          className="object-cover"
-        />
-      </motion.div>
-    </div>
+    </main>
   );
 }

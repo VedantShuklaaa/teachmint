@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
-import { epicPro, inter } from "@/fonts/fonts";
+import { Geist, Geist_Mono } from "next/font/google";
+import { epicPro, inter, times } from "@/fonts/fonts";
 import "./globals.css";
 import { ThemeProviders } from "@/providers/themeProvider";
 import { Navbar } from "@/components/layout/navbar/navbar";
+import Navbar2 from "@/components/layout/navbar/navbar2";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,11 +26,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${epicPro.className} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${epicPro.className} ${times.className} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProviders>
-          <Navbar trigger="onHover" />
+          {/*<Navbar trigger="onHover" />*/}
+          <Navbar2 />
           {children}
         </ThemeProviders>
       </body>
