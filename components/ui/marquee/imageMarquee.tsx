@@ -52,7 +52,7 @@ export function ImageMarquee() {
 
 	return (
 		<div
-			className="w-[65vw] mx-auto overflow-hidden relative px-6"
+			className="w-[70vw] mx-auto overflow-hidden relative px-6"
 			onMouseEnter={() => setPaused(true)}
 			onMouseLeave={() => setPaused(false)}
 		>
@@ -62,7 +62,7 @@ export function ImageMarquee() {
 			<motion.div ref={trackRef} className="flex items-start gap-6 w-max" style={{ x }}>
 				{[...marqueeItems, ...marqueeItems].map((item, i) => (
 					<div key={i} className="flex flex-col items-center gap-1 shrink-0 w-42 cursor-pointer">
-						<div className="w-30 h-30 relative rounded-xl border border-black/10 bg-white overflow-hidden p-3">
+						<div className="w-30 h-30 relative rounded-xl border border-black/10 bg-[#ede5df] overflow-hidden p-3">
 							<Image
 								src={item.src}
 								alt={item.alt}
@@ -71,7 +71,7 @@ export function ImageMarquee() {
 								className="object-cover"
 							/>
 						</div>
-						<p className="text-md font-medium text-foreground text-center leading-snug">
+						<p className="text-md font-medium text-[#ede5df] text-center leading-snug">
 							{item.title}
 						</p>
 					</div>

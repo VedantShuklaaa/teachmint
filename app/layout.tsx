@@ -5,6 +5,7 @@ import "./globals.css";
 import { ThemeProviders } from "@/providers/themeProvider";
 import { Navbar } from "@/components/layout/navbar/navbar";
 import Navbar2 from "@/components/layout/navbar/navbar2";
+import SmoothScrollProvider from "@/providers/smoothScrollProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <ThemeProviders>
           {/*<Navbar trigger="onHover" />*/}
           <Navbar2 />
-          {children}
+          <SmoothScrollProvider>
+            {children}
+          </SmoothScrollProvider>
         </ThemeProviders>
       </body>
     </html>

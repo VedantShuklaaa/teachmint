@@ -48,8 +48,8 @@ export default function Navbar2() {
 			initial="hidden"
 			animate="visible"
 			className={`fixed top-0 left-0 z-50 w-full h-[7vh] transition-colors duration-300 ${scrolled
-				? "bg-background border-b border-white/10"
-				: "bg-transparent border-b border-transparent"
+				? "bg-background"
+				: "bg-transparent"
 				}`}
 		>
 			<div className="mx-auto flex h-full max-w-7xl items-center justify-between px-6">
