@@ -8,19 +8,12 @@ import { ThemeToggleButton } from "../theme/theme-toggle";
 import { IconHandle } from "@animateicons/react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/lib/buttonVariants";
-
 import { navLinks } from "@/constants/navbar/navlinks";
 import { categoryImage, categoryInfo } from "@/constants/navbar/categoryInfo";
 import { categoryItems, type NavItem, type IconItem } from "@/constants/navbar/navItems";
 import { supportLinks, partnerLinks } from "@/constants/navbar/footerLinks";
 import { deviceHeroImages, CAROUSEL_INTERVAL_MS } from "@/constants/navbar/deviceHeroImages";
-import {
-	CLOSED_WIDTH,
-	OPEN_WIDTH,
-	WIDTH_DURATION,
-	PANEL_SHOW_DELAY_MS,
-	ICON_ANIMATION_INTERVAL_MS,
-} from "@/constants/navbar/config";
+import { CLOSED_WIDTH, OPEN_WIDTH, WIDTH_DURATION, PANEL_SHOW_DELAY_MS, ICON_ANIMATION_INTERVAL_MS } from "@/constants/navbar/config";
 import { ChevronDown } from "lucide-react";
 
 export interface NavbarProps {
@@ -181,7 +174,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 											{activeKey === "devices" ? (
 												<DeviceHeroCarousel />
 											) : (
-												<div className="w-100 h-100 rounded-xl overflow-hidden bg-foreground/5 shrink-0 flex flex-col cursor-pointer">
+												<Link href={categoryInfo[activeKey].href} className="w-100 h-100 rounded-xl overflow-hidden bg-foreground/5 shrink-0 flex flex-col cursor-pointer">
 													<div className="relative w-full h-[60%] p-2">
 														<div className="relative w-full h-full">
 															<Image
@@ -202,7 +195,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															{categoryInfo[activeKey].description}
 														</p>
 													</div>
-												</div>
+												</Link>
 											)}
 
 											<nav
