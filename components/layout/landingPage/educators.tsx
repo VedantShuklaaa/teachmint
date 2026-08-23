@@ -1,8 +1,8 @@
 "use client";
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "motion/react";
+import GlowWrapper from "@/components/ui/background/glowWrapper";
 
 interface Review {
 	id: string;
@@ -67,6 +67,14 @@ export default function Educators() {
 	const [activeIndex, setActiveIndex] = useState(0);
 	const active = REVIEWS[activeIndex];
 
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setActiveIndex((prev) => (prev + 1) % REVIEWS.length);
+		}, 3000);
+
+		return () => clearInterval(interval);
+	}, [activeIndex]);
+
 	return (
 		<div className="w-full flex flex-col items-center justify-center gap-20 py-30">
 			<div className="flex flex-col gap-2">
@@ -79,83 +87,85 @@ export default function Educators() {
 				</p>
 			</div>
 
-			<div className="h-[60vh] w-[70vw] bg-[#ede5df] rounded-3xl flex flex-col">
-				<div className="h-[85%] w-full flex">
-					<div className="h-full w-1/2 flex items-center justify-center p-6">
-						<div className="relative h-[90%] w-[73%] rounded-xl">
+			<GlowWrapper glowTop glowBottom={false} glowSize="100%">
+				<div className="h-[60vh] w-[70vw] bg-[#ede5df] rounded-3xl flex flex-col">
+					<div className="h-[85%] w-full flex">
+						<div className="h-full w-1/2 flex items-center justify-center p-6">
+							<div className="relative h-[90%] w-[73%] rounded-xl">
+								<AnimatePresence mode="wait">
+									<motion.div
+										key={active.id}
+										initial={{ opacity: 0, scale: 1.04 }}
+										animate={{ opacity: 1, scale: 1 }}
+										exit={{ opacity: 0, scale: 0.98 }}
+										transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+										className="absolute inset-0"
+									>
+										<Image
+											src={active.avatar}
+											alt={active.name}
+											fill
+											sizes="280px"
+											className="object-cover"
+										/>
+									</motion.div>
+								</AnimatePresence>
+							</div>
+						</div>
+
+						<div className="h-full w-1/2 flex flex-col items-start justify-center gap-6 pr-10">
 							<AnimatePresence mode="wait">
 								<motion.div
 									key={active.id}
-									initial={{ opacity: 0, scale: 1.04 }}
-									animate={{ opacity: 1, scale: 1 }}
-									exit={{ opacity: 0, scale: 0.98 }}
+									initial={{ opacity: 0, y: 16 }}
+									animate={{ opacity: 1, y: 0 }}
+									exit={{ opacity: 0, y: -16 }}
 									transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-									className="absolute inset-0"
+									className="flex flex-col gap-6"
 								>
-									<Image
-										src={active.avatar}
-										alt={active.name}
-										fill
-										sizes="280px"
-										className="object-cover"
-									/>
+									<p className="text-2xl font-[times] leading-snug text-black">
+										&ldquo;{active.quote}&rdquo;
+									</p>
+									<span className="flex flex-col gap-0.5">
+										<p className="text-lg text-black">
+											{active.name}
+										</p>
+										<p className="text-sm font-inter font-extralight text-black/60">
+											{active.position}
+										</p>
+									</span>
 								</motion.div>
 							</AnimatePresence>
 						</div>
 					</div>
 
-					<div className="h-full w-1/2 flex flex-col items-start justify-center gap-6 pr-10">
-						<AnimatePresence mode="wait">
-							<motion.div
-								key={active.id}
-								initial={{ opacity: 0, y: 16 }}
-								animate={{ opacity: 1, y: 0 }}
-								exit={{ opacity: 0, y: -16 }}
-								transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-								className="flex flex-col gap-6"
-							>
-								<p className="text-2xl font-[times] leading-snug text-black">
-									&ldquo;{active.quote}&rdquo;
-								</p>
-								<span className="flex flex-col gap-0.5">
-									<p className="text-lg text-black">
-										{active.name}
-									</p>
-									<p className="text-sm font-inter font-extralight text-black/60">
-										{active.position}
-									</p>
-								</span>
-							</motion.div>
-						</AnimatePresence>
-					</div>
-				</div>
-
-				<div className="h-[15%] w-full rounded-b-3xl grid grid-cols-6 divide-x divide-black/15">
-					{REVIEWS.map((review, index) => {
-						const isActive = index === activeIndex;
-						return (
-							<button
-								key={review.id}
-								onClick={() => setActiveIndex(index)}
-								className={`h-full w-full flex items-center justify-center border-t transition-colors ${isActive
-									? "border-t-transparent bg-black/5"
-									: "border-t-black/15 hover:bg-black/[0.03]"
-									} ${index === 0 ? "rounded-bl-3xl" : ""} ${index === REVIEWS.length - 1 ? "rounded-br-3xl" : ""
-									}`}
-							>
-								<span
-									className={`text-sm font-inter transition-opacity ${isActive
-										? "opacity-100 font-medium text-black"
-										: "opacity-50 text-black"
+					<div className="h-[15%] w-full rounded-b-3xl grid grid-cols-6 divide-x divide-black/15">
+						{REVIEWS.map((review, index) => {
+							const isActive = index === activeIndex;
+							return (
+								<button
+									key={review.id}
+									onClick={() => setActiveIndex(index)}
+									className={`h-full w-full flex items-center justify-center border-t transition-colors ${isActive
+										? "border-t-transparent bg-black/5"
+										: "border-t-black/15 hover:bg-black/[0.03]"
+										} ${index === 0 ? "rounded-bl-3xl" : ""} ${index === REVIEWS.length - 1 ? "rounded-br-3xl" : ""
 										}`}
 								>
-									{review.name}
-								</span>
-							</button>
-						);
-					})}
+									<span
+										className={`text-sm font-inter transition-opacity ${isActive
+											? "opacity-100 font-medium text-black"
+											: "opacity-50 text-black"
+											}`}
+									>
+										{review.name}
+									</span>
+								</button>
+							);
+						})}
+					</div>
 				</div>
-			</div>
+			</GlowWrapper>
 		</div>
 	);
 }

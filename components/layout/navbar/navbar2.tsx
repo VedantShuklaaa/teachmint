@@ -48,7 +48,7 @@ export default function Navbar2() {
 			initial="hidden"
 			animate="visible"
 			className={`fixed top-0 left-0 z-50 w-full h-[7vh] transition-colors duration-300 ${scrolled
-				? "bg-background"
+				? "bg-background/50 backdrop-blur-sm"
 				: "bg-transparent"
 				}`}
 		>

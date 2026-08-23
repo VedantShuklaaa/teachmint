@@ -16,12 +16,13 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-inter: var(--font-inter);
+  --font-anton: var(--font-anton);
   --font-times: var(--font-times);
   --font-arial: Arial, Helvetica, sans-serif;
 }
 
 .dark {
-  --background: #1E1E1E ;
+  --background: #000000 ;
   --foreground: #ededed;
   --primary: #1da1f2;
 }

@@ -110,7 +110,7 @@ export default function FeatureCarousel() {
 		<div className="w-full">
 			<div className="w-[70vw] mx-auto">
 				<h1 className="text-5xl font-[times] leading-none">
-					Your intelligent, safe <br/> and smart teaching assistant
+					Your intelligent, safe <br /> and smart teaching assistant
 				</h1>
 			</div>
 			<div
@@ -164,22 +164,23 @@ export default function FeatureCarousel() {
 				<div className="shrink-0 w-6" aria-hidden="true" />
 			</div>
 
-			<div className="flex justify-center gap-3">
+			<div className="flex justify-center gap-4">
 				<button
 					onClick={() => scroll("left")}
 					disabled={!canScrollLeft}
-					className="h-14 w-14 rounded-xl flex items-center justify-center bg-primary disabled:opacity-30 disabled:cursor-not-allowed transition-color hover:bg-foreground/20 duration-400 cursor-pointer"
+					className="h-14 w-14 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
 					aria-label="Scroll left"
 				>
-					<ChevronLeft className="h-5 w-5 text-[#ede5df]" />
+					<ChevronLeft className="h-6 w-6 text-white/70" strokeWidth={1.5} />
 				</button>
+
 				<button
 					onClick={() => scroll("right")}
 					disabled={!canScrollRight}
-					className="h-14 w-14 rounded-xl flex items-center justify-center bg-primary disabled:opacity-30 disabled:cursor-not-allowed transition-color hover:bg-foreground/20 duration-400 cursor-pointer"
+					className="h-14 w-14 rounded-full flex items-center justify-center bg-white/[0.03] border border-white/10 disabled:opacity-30 disabled:cursor-not-allowed transition-all duration-300 hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_0_20px_rgba(255,255,255,0.25)] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/50"
 					aria-label="Scroll right"
 				>
-					<ChevronRight className="h-5 w-5 text-[#ede5df]" />
+					<ChevronRight className="h-6 w-6 text-white/70" strokeWidth={1.5} />
 				</button>
 			</div>
 		</div>

@@ -44,25 +44,7 @@ const FEATURE_BLOCKS: FeatureBlock[] = [
 		description:
 			"Give every lesson the tools it needs with built-in simulations, graphs, calculators, dictionaries, and periodic tables. Everything is available directly on the whiteboard, helping you explain complex concepts visually and keep students engaged throughout the lesson.",
 		image: "/TMLogo2.svg",
-	}, {
-		id: "block-3",
-		title: "Import Files",
-		description:
-			"Bring your existing teaching resources directly onto the interactive whiteboard. Import PDFs, images, videos, and other classroom material, then use them alongside your lessons to create a more dynamic and interactive learning experience.",
-		image: "/TMLogo3.svg",
-	}, {
-		id: "block-4",
-		title: "Voice AI",
-		description:
-			"Control your whiteboard and classroom experience naturally with your voice. Dictate notes, trigger actions, and interact with different features hands-free, allowing you to stay focused on teaching instead of constantly reaching for controls.",
-		image: "/TMLogo3.svg",
-	}, {
-		id: "block-5",
-		title: "Smart Writing & Shapes",
-		description:
-			"Turn handwritten notes, diagrams, and rough sketches into clean, polished content with intelligent writing and shape recognition. Customize your pen with different colors, thicknesses, and styles while creating professional-looking lessons naturally as you teach.",
-		image: "/TMLogo3.svg",
-	},
+	}
 ];
 
 
@@ -178,8 +160,8 @@ export function StickyScrollReveal({ sections }: StickyScrollRevealProps) {
 								</div>
 
 								<div className="flex flex-col h-35 w-100 justify-start gap-2 p-2">
-									<h1 className="leading-none text-3xl font-light font-[times]">{items.title}</h1>
-									<p className="leading-none font-extralight text-zinc-700 max-w-xl w-fit">{items.description}</p>
+									<h1 className="leading-none text-xl font-light font-[times]">{items.title}</h1>
+									<p className="leading-none font-extralight text-sm text-zinc-700 max-w-xl w-fit">{items.description}</p>
 								</div>
 
 								<Button
