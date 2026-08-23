@@ -21,6 +21,7 @@ import {
 	PANEL_SHOW_DELAY_MS,
 	ICON_ANIMATION_INTERVAL_MS,
 } from "@/constants/navbar/config";
+import { ChevronDown } from "lucide-react";
 
 export interface NavbarProps {
 	trigger?: "onClick" | "onHover";
@@ -102,7 +103,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 						aria-label="Teachmint home"
 					>
 						<Image
-							src="/TMLogo2.svg"
+							src="/TMLogo3.svg"
 							height={180}
 							width={180}
 							alt="Teachmint logo"
@@ -110,26 +111,32 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 						/>
 					</Link>
 
-					<div className="hidden sm:flex items-center justify-center gap-2">
-						{navLinks.map((link) => (
-							<button
-								key={link.key}
-								type="button"
-								aria-expanded={activeKey === link.key}
-								aria-haspopup={categoryItems[link.key] ? "true" : undefined}
-								aria-current={activeKey === link.key ? "true" : undefined}
-								onClick={() => handleLinkClick(link.key)}
-								onMouseEnter={() => handleLinkHover(link.key)}
-								className={cn(
-									"text-md px-3 py-1.5 rounded-lg transition-colors cursor-pointer",
-									activeKey === link.key
-										? "text-foreground bg-foreground/10"
-										: "text-foreground/70 hover:text-foreground hover:bg-foreground/5 duration-300"
-								)}
-							>
-								{link.label}
-							</button>
-						))}
+					<div className="hidden sm:flex items-center justify-center gap-5">
+						{navLinks.map((link) => {
+							const hasSubmenu = !!categoryItems[link.key];
+							const isActive = activeKey === link.key;
+							return (
+								<button
+									key={link.key}
+									type="button"
+									aria-expanded={isActive}
+									aria-haspopup={hasSubmenu ? "true" : undefined}
+									aria-current={isActive ? "true" : undefined}
+									onClick={() => handleLinkClick(link.key)}
+									onMouseEnter={() => handleLinkHover(link.key)}
+									className={`group relative flex items-center gap-1 font-inter text-sm text-md cursor-pointer font-extralight transition-colors ${isActive ? "text-[#eee4de]" : "text-white"
+										}`}
+								>
+									{link.label}
+									{hasSubmenu && (
+										<ChevronDown
+											className={`h-4 w-4 transition-transform duration-300 ${isActive ? "rotate-180" : "group-hover:rotate-180"
+												}`}
+										/>
+									)}
+								</button>
+							);
+						})}
 					</div>
 
 					<div className="flex items-center justify-end gap-3">
@@ -188,10 +195,10 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 														</div>
 													</div>
 													<div className="h-[40%] px-4 py-3 flex flex-col justify-center">
-														<p className="text-xl font-semibold text-foreground truncate">
+														<p className="text-xl font-[times] text-foreground truncate">
 															{categoryInfo[activeKey].title}
 														</p>
-														<p className="text-lg text-foreground/60 line-clamp-2 break-words">
+														<p className="text-lg text-foreground/60 line-clamp-2 break-words leading-none">
 															{categoryInfo[activeKey].description}
 														</p>
 													</div>
@@ -228,7 +235,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															<li key={item.href}>
 																<Link
 																	href={item.href}
-																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap"
+																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
 																>
 																	{item.label}
 																</Link>
@@ -245,7 +252,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															<li key={item.href}>
 																<Link
 																	href={item.href}
-																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap"
+																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
 																>
 																	{item.label}
 																</Link>
@@ -274,7 +281,7 @@ function NavItemCard({ item }: { item: NavItem }) {
 	if (item.kind === "image") {
 		return (
 			<Link href={item.href} className="group">
-				<div className="h-100 w-full aspect-square rounded-xl overflow-hidden bg-foreground/5 hover:bg-foreground/10 transition-colors duration-300 flex flex-col">
+				<div className="h-100 w-full aspect-square rounded-xl overflow-hidden bg-foreground/5 backdrop-blur-xl transition-colors duration-300 flex flex-col">
 					<div className="relative w-full h-[60%] p-2">
 						<div className="relative w-full h-full">
 							<Image
@@ -287,7 +294,7 @@ function NavItemCard({ item }: { item: NavItem }) {
 						</div>
 					</div>
 					<div className="h-[40%] px-3 py-2 flex flex-col justify-center">
-						<p className="text-xl font-semibold text-foreground line-clamp-2 break-words">
+						<p className="text-xl font-inter text-foreground line-clamp-2 break-words">
 							{item.title}
 						</p>
 					</div>
@@ -317,7 +324,7 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 	return (
 		<Link
 			href={item.href}
-			className="flex items-center gap-3 group hover:bg-foreground/5 rounded-lg duration-300 p-2"
+			className="flex items-center gap-3 group bg-foreground/5 hover:bg-foreground/10 rounded-lg duration-300 p-2"
 			aria-label={item.description ? `${item.title} — ${item.description}` : item.title}
 		>
 			<div className="flex items-center justify-center w-14 h-14 shrink-0 rounded-lg bg-primary/90 group-hover:bg-primary transition-colors">
@@ -331,8 +338,8 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 				/>
 			</div>
 			<div className="flex flex-col h-full items-start">
-				<p className="text-md font-semibold text-foreground">{item.title}</p>
-				<p className="text-sm text-foreground/60">{item.description}</p>
+				<p className="text-sm font-inter text-foreground">{item.title}</p>
+				<p className="text-xs text-foreground/60 font-inter">{item.description}</p>
 			</div>
 		</Link>
 	);

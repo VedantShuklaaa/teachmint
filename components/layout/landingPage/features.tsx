@@ -71,6 +71,18 @@ const CAROUSEL_ITEMS: CarouselCard[] = [
 	},
 ];
 
+const GLOW_COLORS = [
+	"bg-fuchsia-500/40",
+	"bg-cyan-500/40",
+	"bg-amber-500/40",
+	"bg-emerald-500/40",
+	"bg-rose-500/40",
+	"bg-indigo-500/40",
+	"bg-orange-500/40",
+	"bg-teal-500/40",
+];
+
+
 const SCROLL_AMOUNT = 360;
 
 export default function FeatureCarousel() {
@@ -138,7 +150,7 @@ export default function FeatureCarousel() {
 					) : (
 						<div
 							key={item.id}
-							className="snap-end shrink-0 w-[400px] h-[460px] rounded-2xl bg-white flex flex-col overflow-hidden"
+							className="snap-end shrink-0 w-[400px] h-[460px] rounded-2xl bg-background/50 backdrop-blur-sm shadow-sm border border-white/5 flex flex-col overflow-hidden"
 						>
 							<div className="relative h-[70%] w-full">
 								<Image
@@ -149,10 +161,10 @@ export default function FeatureCarousel() {
 								/>
 							</div>
 							<div className="h-[30%] flex flex-col justify-center px-5 gap-2">
-								<h3 className="text-xl font-semibold text-black font-inter tracking-wide leading-none">
+								<h3 className="text-xl font-semibold font-inter tracking-wide leading-none">
 									{item.title}
 								</h3>
-								<p className="text-md text-zinc-700 font-inter leading-none">
+								<p className="text-md text-white/40 font-inter leading-none">
 									{item.description}
 								</p>
 							</div>

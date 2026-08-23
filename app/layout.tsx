@@ -40,7 +40,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <ThemeProviders>
           {/*<Navbar trigger="onHover" />*/}
-          <Navbar2 />
+          <Navbar  trigger="onHover"/>
           <SmoothScrollProvider>
             {children}
           </SmoothScrollProvider>

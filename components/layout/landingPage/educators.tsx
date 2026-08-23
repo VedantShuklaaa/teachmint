@@ -88,7 +88,7 @@ export default function Educators() {
 			</div>
 
 			<GlowWrapper glowTop glowBottom={false} glowSize="100%">
-				<div className="h-[60vh] w-[70vw] bg-[#ede5df] rounded-3xl flex flex-col">
+				<div className="h-[60vh] w-[70vw] bg-background/50 backdrop-blur-sm shadow-sm rounded-3xl flex flex-col border border-white/5">
 					<div className="h-[85%] w-full flex">
 						<div className="h-full w-1/2 flex items-center justify-center p-6">
 							<div className="relative h-[90%] w-[73%] rounded-xl">
@@ -123,14 +123,14 @@ export default function Educators() {
 									transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
 									className="flex flex-col gap-6"
 								>
-									<p className="text-2xl font-[times] leading-snug text-black">
+									<p className="text-2xl font-[times] leading-snug ">
 										&ldquo;{active.quote}&rdquo;
 									</p>
 									<span className="flex flex-col gap-0.5">
-										<p className="text-lg text-black">
+										<p className="text-lg">
 											{active.name}
 										</p>
-										<p className="text-sm font-inter font-extralight text-black/60">
+										<p className="text-sm font-inter font-extralight text-white/60">
 											{active.position}
 										</p>
 									</span>
@@ -146,16 +146,16 @@ export default function Educators() {
 								<button
 									key={review.id}
 									onClick={() => setActiveIndex(index)}
-									className={`h-full w-full flex items-center justify-center border-t transition-colors ${isActive
-										? "border-t-transparent bg-black/5"
-										: "border-t-black/15 hover:bg-black/[0.03]"
+									className={`h-full w-full flex items-center justify-center border-t transition-colors cursor-pointer ${isActive
+										? "border-t-transparent bg-white/4"
+										: "border-t-white/5 hover:bg-white/[0.03]"
 										} ${index === 0 ? "rounded-bl-3xl" : ""} ${index === REVIEWS.length - 1 ? "rounded-br-3xl" : ""
 										}`}
 								>
 									<span
 										className={`text-sm font-inter transition-opacity ${isActive
-											? "opacity-100 font-medium text-black"
-											: "opacity-50 text-black"
+											? "opacity-100 font-medium"
+											: "opacity-50"
 											}`}
 									>
 										{review.name}

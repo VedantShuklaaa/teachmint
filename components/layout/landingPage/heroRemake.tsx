@@ -33,14 +33,6 @@ export default function Hero() {
 	return (
 		<section className="flex flex-col w-full">
 			<div className="h-[80vh] w-full flex flex-col items-center justify-end text-center gap-15  px-[5%] relative ">
-				<Image
-					src="/bg-final.png"
-					alt="BACKGROUND IMAGE"
-					height={1080}
-					width={1720}
-					className="absolute left-1/2 -translate-x-1/2 object-cover -z-10"
-				/>
-
 				<div className="flex flex-col items-center gap-6 py-[5rem]">
 					<div className="flex flex-col items-center">
 						<motion.h1

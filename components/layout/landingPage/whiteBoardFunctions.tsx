@@ -8,12 +8,12 @@ import Image from "next/image";
 export default function WhiteBoardFunctions() {
 	return (
 		<div className="w-full pt-[2%]">
-			<div className="h-full w-full rounded-3xl bg-[#ede5df] flex flex-col items-center">
+			<div className="h-full w-full rounded-3xl bg-white/5 backdrop-blur-sm shadow-sm border-y border-white/10 flex flex-col items-center">
 				<div className="h-[40vh] w-full flex flex-col items-center justify-center gap-4">
-					<h1 className="text-black text-5xl max-w-2xl text-center leading-none font-[times]">
+					<h1 className="text-5xl max-w-2xl text-center leading-none font-[times]">
 						The Most Powerful All-in-One <br /> Interactive Whiteboard
 					</h1>
-					<p className="text-black font-inter font-extralight text-lg leading-none text-center max-w-xl">
+					<p className="text-white/50 font-inter font-extralight text-lg leading-none text-center max-w-xl">
 						Bring ideas to life with smarter writing, problem-solving, and <br /> voice-powered classroom tools.
 					</p>
 				</div>
@@ -117,7 +117,7 @@ export function StickyScrollReveal({ sections }: StickyScrollRevealProps) {
 				</div>
 
 				{/* Right: scrolling explanation panel */}
-				<div className="w-1/2 shrink-0 rounded-l-3xl bg-[#ddd2cb]">
+				<div className="w-1/2 shrink-0 rounded-l-3xl bg-[#eee4de] backdrop-blur-sm">
 					{sections.map((section, index) => (
 						<section
 							key={section.id}
@@ -137,19 +137,19 @@ export function StickyScrollReveal({ sections }: StickyScrollRevealProps) {
 				</div>
 			</div>
 
-			<div className="text-black h-[60vh] w-full flex">
+			<div className="h-[60vh] w-full flex">
 				<div className="w-1/2 h-full flex flex-col gap-2 text-left items-start justify-start py-20 px-40">
 					<h2 className="leading-none font-[times] max-w-xl w-fit text-4xl">
 						Solutions for every learning need
 					</h2>
-					<p className="max-w-xl w-fit text-lg font-extralight leading-[1.1]">
+					<p className="max-w-xl w-fit text-lg font-extralight leading-[1.1] text-white/50">
 						Empowering educators and learners with smarter solutions <br /> for every environment.
 					</p>
 				</div>
 				<div className="w-1/2 h-full flex items-center justify-start">
-					<div className="h-[50vh] w-180 rounded-3xl bg-background flex flex-col p-4 gap-4">
+					<div className="h-[50vh] w-180 rounded-3xl bg-black flex flex-col p-4 gap-4">
 						{solutions.map((items, idx) => (
-							<div className="h-40 w-full rounded-2xl bg-white flex items-center p-2" key={idx}>
+							<div className="h-40 w-full rounded-2xl bg-white/5 border border-white/10 flex items-center p-2" key={idx}>
 								<div className="h-35 w-35 rounded-xl relative">
 									<Image
 										src={items.src}
@@ -161,7 +161,7 @@ export function StickyScrollReveal({ sections }: StickyScrollRevealProps) {
 
 								<div className="flex flex-col h-35 w-100 justify-start gap-2 p-2">
 									<h1 className="leading-none text-xl font-light font-[times]">{items.title}</h1>
-									<p className="leading-none font-extralight text-sm text-zinc-700 max-w-xl w-fit">{items.description}</p>
+									<p className="leading-none font-extralight text-sm text-white/70 max-w-xl w-fit">{items.description}</p>
 								</div>
 
 								<Button
