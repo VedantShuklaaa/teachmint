@@ -37,11 +37,11 @@ export default function Hero() {
 				className="absolute inset-1 -z-10"
 				gradientColors={['#FF9FFC', '#1ea1f2']}
 				angle={20}
-				noise={0.5}
+				noise={0.1}
 				blindCount={16}
 				blindMinWidth={60}
-				spotlightRadius={0.5}
-				spotlightSoftness={1}
+				spotlightRadius={0.3}
+				spotlightSoftness={0.5}
 				spotlightOpacity={1}
 				mouseDampening={0.15}
 				distortAmount={0}
@@ -60,7 +60,7 @@ export default function Hero() {
 								delay: CONTAINER_DURATION,
 								ease: [0.22, 1, 0.36, 1],
 							}}
-							className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-[#ede5df] font-[times] max-w-5xl"
+							className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-white font-[times] max-w-5xl"
 						>
 							<span className="bg-gradient-to-r from-[#ea4335] via-[#fbbc05] via-[#34a853] to-[#4285f4] bg-clip-text text-transparent">
 								Google

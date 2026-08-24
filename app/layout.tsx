@@ -7,6 +7,7 @@ import { Navbar } from "@/components/layout/navbar/navbar";
 import Navbar2 from "@/components/layout/navbar/navbar2";
 import SmoothScrollProvider from "@/providers/smoothScrollProvider";
 import Footer from "@/components/layout/footer/footer";
+import TransitionProvider from "@/providers/transitionProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +40,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProviders>
-          {/*<Navbar trigger="onHover" />*/}
-          <Navbar  trigger="onHover"/>
           <SmoothScrollProvider>
-            {children}
+            <TransitionProvider columns={12}>
+              <Navbar trigger="onHover" />
+              {children}
+            </TransitionProvider>
           </SmoothScrollProvider>
           <Footer />
         </ThemeProviders>

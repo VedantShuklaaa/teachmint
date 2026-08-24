@@ -28,7 +28,7 @@ const FLOATING_VIDEOS = [
 	},
 	{
 		src: "/products/heroVideo4.webm",
-		className: "h-60 w-60 right-100 bottom-40",
+		className: "h-60 w-100 right-100 bottom-40",
 		depth: 60,
 		floatDuration: 6.5,
 		floatDelay: 1.2,

@@ -15,6 +15,7 @@ import { supportLinks, partnerLinks } from "@/constants/navbar/footerLinks";
 import { deviceHeroImages, CAROUSEL_INTERVAL_MS } from "@/constants/navbar/deviceHeroImages";
 import { CLOSED_WIDTH, OPEN_WIDTH, WIDTH_DURATION, PANEL_SHOW_DELAY_MS, ICON_ANIMATION_INTERVAL_MS } from "@/constants/navbar/config";
 import { ChevronDown } from "lucide-react";
+import TransitionLink from "@/components/ui/links/transitionLink";
 
 export interface NavbarProps {
 	trigger?: "onClick" | "onHover";
@@ -89,7 +90,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 				className="overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-background/50 backdrop-blur-sm shadow-sm"
 			>
 				<div className="grid grid-cols-3 items-center px-6 py-3">
-					<Link
+					<TransitionLink
 						href="/"
 						className="text-lg font-semibold shrink-0 justify-self-start flex items-center gap-2"
 						onClick={() => setActiveKey(null)}
@@ -102,20 +103,27 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 							alt="Teachmint logo"
 							priority
 						/>
-					</Link>
+					</TransitionLink>
 
 					<div className="hidden sm:flex items-center justify-center gap-5">
 						{navLinks.map((link) => {
 							const hasSubmenu = !!categoryItems[link.key];
 							const isActive = activeKey === link.key;
 							return (
-								<button
+								<TransitionLink
 									key={link.key}
-									type="button"
-									aria-expanded={isActive}
+									href={link.href}
+									aria-expanded={hasSubmenu ? isActive : undefined}
 									aria-haspopup={hasSubmenu ? "true" : undefined}
 									aria-current={isActive ? "true" : undefined}
-									onClick={() => handleLinkClick(link.key)}
+									onClick={(e) => {
+										if (hasSubmenu) {
+											e.preventDefault();
+											handleLinkClick(link.key);
+										} else {
+											setActiveKey(null);
+										}
+									}}
 									onMouseEnter={() => handleLinkHover(link.key)}
 									className={`group relative flex items-center gap-1 font-inter text-sm text-md cursor-pointer font-extralight transition-colors ${isActive ? "text-[#eee4de]" : "text-white"
 										}`}
@@ -127,7 +135,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 												}`}
 										/>
 									)}
-								</button>
+								</TransitionLink>
 							);
 						})}
 					</div>
@@ -174,7 +182,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 											{activeKey === "devices" ? (
 												<DeviceHeroCarousel />
 											) : (
-												<Link href={categoryInfo[activeKey].href} className="w-100 h-100 rounded-xl overflow-hidden bg-foreground/5 shrink-0 flex flex-col cursor-pointer">
+												<TransitionLink href={categoryInfo[activeKey].href} className="w-100 h-100 rounded-xl overflow-hidden bg-foreground/5 shrink-0 flex flex-col cursor-pointer">
 													<div className="relative w-full h-[60%] p-2">
 														<div className="relative w-full h-full">
 															<Image
@@ -195,7 +203,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															{categoryInfo[activeKey].description}
 														</p>
 													</div>
-												</Link>
+												</TransitionLink>
 											)}
 
 											<nav
@@ -226,12 +234,12 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 													<ul className="flex flex-col gap-2.5 list-none">
 														{supportLinks.map((item) => (
 															<li key={item.href}>
-																<Link
+																<TransitionLink
 																	href={item.href}
 																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
 																>
 																	{item.label}
-																</Link>
+																</TransitionLink>
 															</li>
 														))}
 													</ul>
@@ -243,19 +251,15 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 													<ul className="flex flex-col gap-2.5 list-none">
 														{partnerLinks.map((item) => (
 															<li key={item.href}>
-																<Link
+																<TransitionLink
 																	href={item.href}
 																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
 																>
 																	{item.label}
-																</Link>
+																</TransitionLink>
 															</li>
 														))}
 													</ul>
-												</div>
-
-												<div className="absolute right-0 bottom-0">
-													<ThemeToggleButton />
 												</div>
 											</nav>
 										</motion.div>
@@ -273,7 +277,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 function NavItemCard({ item }: { item: NavItem }) {
 	if (item.kind === "image") {
 		return (
-			<Link href={item.href} className="group">
+			<TransitionLink href={item.href} className="group">
 				<div className="h-100 w-full aspect-square rounded-xl overflow-hidden bg-foreground/5 backdrop-blur-xl transition-colors duration-300 flex flex-col">
 					<div className="relative w-full h-[60%] p-2">
 						<div className="relative w-full h-full">
@@ -292,7 +296,7 @@ function NavItemCard({ item }: { item: NavItem }) {
 						</p>
 					</div>
 				</div>
-			</Link>
+			</TransitionLink>
 		);
 	}
 
@@ -315,7 +319,7 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 	const Icon = item.icon;
 
 	return (
-		<Link
+		<TransitionLink
 			href={item.href}
 			className="flex items-center gap-3 group bg-foreground/5 hover:bg-foreground/10 rounded-lg duration-300 p-2"
 			aria-label={item.description ? `${item.title} — ${item.description}` : item.title}
@@ -334,7 +338,7 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 				<p className="text-sm font-inter text-foreground">{item.title}</p>
 				<p className="text-xs text-foreground/60 font-inter">{item.description}</p>
 			</div>
-		</Link>
+		</TransitionLink>
 	);
 }
 
