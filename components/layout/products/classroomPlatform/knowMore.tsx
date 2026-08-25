@@ -21,7 +21,7 @@ export default function KnowMore() {
 					}}
 					className="flex gap-3"
 				>
-					<Button variant="primary" size="md" className="cursor-pointer">
+					<Button variant="primary" size="md" className="cursor-pointer bg-primary">
 						Know more
 					</Button>
 				</motion.div>

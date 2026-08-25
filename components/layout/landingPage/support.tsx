@@ -1,6 +1,6 @@
 export default function Support() {
 	return (
-		<div className="h-screen w-full flex flex-col items-center justify-center gap-14">
+		<div className="h-screen w-full flex flex-col items-center justify-between py-30">
 			<div className="w-[70vw] flex flex-col items-center justify-center gap-4">
 				<h1 className="text-5xl max-w-3xl text-center leading-none font-[times]">Support That Goes Beyond the Board</h1>
 				<p className="font-inter font-extralight text-lg leading-none text-center max-w-xl">From installation to everyday assistance, get dependable support whenever you need it.</p>

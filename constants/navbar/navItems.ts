@@ -27,7 +27,7 @@ export interface ImageItem extends IconItemBase {
 export type NavItem = IconItem | ImageItem;
 
 const productItems: NavItem[] = [
-	{ kind: "icon", href: "/products/digital-board", title: "Digital Board for Teaching", description: "AI-Powered Digital Board for Educators.", icon: GalleryThumbnailsIcon },
+	{ kind: "icon", href: "/products/digital-board-for-teaching", title: "Digital Board for Teaching", description: "AI-Powered Digital Board for Educators.", icon: GalleryThumbnailsIcon },
 	{ kind: "icon", href: "/products/eduai", title: "EduAI", description: "AI-Powered smart and intelligent personal teaching assistant.", icon: SparklesIcon },
 	{ kind: "icon", href: "/products/interactive-whiteboard", title: "Interactive Whiteboard", description: "Elevate Teaching & Learning with Teachmint X Interactive Whiteboard.", icon: PenToolIcon },
 	{ kind: "icon", href: "/products/visionx", title: "VisionX", description: "Real-time Classroom Monitoring System", icon: EyeIcon },

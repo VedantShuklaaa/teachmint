@@ -324,10 +324,10 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 			className="flex items-center gap-3 group bg-foreground/5 hover:bg-foreground/10 rounded-lg duration-300 p-2"
 			aria-label={item.description ? `${item.title} — ${item.description}` : item.title}
 		>
-			<div className="flex items-center justify-center w-14 h-14 shrink-0 rounded-lg bg-primary/90 group-hover:bg-primary transition-colors">
+			<div className="flex items-center justify-center w-14 h-14 shrink-0 rounded-lg bg-[#eee4de] transition-colors">
 				<Icon
 					aria-hidden="true"
-					className="w-5 h-5 text-white"
+					className="w-5 h-5 text-black"
 					size={20}
 					ref={iconRef}
 					onMouseEnter={() => iconRef.current?.startAnimation()}
