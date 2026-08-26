@@ -60,7 +60,7 @@ export default function Hero() {
 								delay: CONTAINER_DURATION,
 								ease: [0.22, 1, 0.36, 1],
 							}}
-							className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-white font-[times] max-w-5xl"
+							className="text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none text-white font-[sora] max-w-5xl"
 						>
 							<span className="bg-gradient-to-r from-[#ea4335] via-[#fbbc05] via-[#34a853] to-[#4285f4] bg-clip-text text-transparent">
 								Google

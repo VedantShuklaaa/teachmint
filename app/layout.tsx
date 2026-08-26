@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Anton, Geist, Geist_Mono } from "next/font/google";
+import { Anton, Geist, Geist_Mono, Sora } from "next/font/google";
 import { epicPro, inter, times } from "@/fonts/fonts";
 import "./globals.css";
 import { ThemeProviders } from "@/providers/themeProvider";
@@ -25,6 +25,11 @@ export const anton = Anton({
   weight: "400",
 });
 
+export const sora = Sora({
+  subsets: ["latin"],
+  variable: "--font-sora",
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -36,16 +41,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${epicPro.className} ${times.className} ${anton.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${epicPro.className} ${times.className} ${anton.variable} ${sora.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
         <ThemeProviders>
-          <SmoothScrollProvider>
-            <TransitionProvider columns={12}>
-              <Navbar trigger="onHover" />
-              {children}
-            </TransitionProvider>
-          </SmoothScrollProvider>
+          <TransitionProvider columns={12}>
+            <Navbar trigger="onHover" />
+            {children}
+          </TransitionProvider>
           <Footer />
         </ThemeProviders>
       </body>

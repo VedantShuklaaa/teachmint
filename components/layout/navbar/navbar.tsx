@@ -261,6 +261,8 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 														))}
 													</ul>
 												</div>
+
+												<ThemeToggleButton />
 											</nav>
 										</motion.div>
 									)}

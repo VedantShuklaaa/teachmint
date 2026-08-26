@@ -38,7 +38,7 @@ export default function EduAI() {
 		<div className="h-screen w-full py-10">
 			<div className="dynamic-border h-full w-[70%] mx-auto border rounded-xl flex flex-col items-center py-4 bg-white/10">
 				<div className="flex items-center">
-					<h1 className="text-4xl sm:text-5xl tracking-wider leading-none text-[#ede5df] font-[times] max-w-4xl text-center">
+					<h1 className="text-4xl sm:text-5xl tracking-tight leading-none text-[#ede5df] font-[sora] max-w-4xl text-center">
 						<span className="text-primary">EduAI:</span> Your intelligent and smart teaching assistant
 					</h1>
 				</div>

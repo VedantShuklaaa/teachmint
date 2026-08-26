@@ -78,94 +78,99 @@ export default function Educators() {
 	return (
 		<div className="w-full flex flex-col items-center justify-center gap-20 py-30">
 			<div className="flex flex-col gap-2">
-				<h1 className="text-5xl text-center leading-none font-[times]">
+				<h1 className="text-5xl text-center leading-none tracking-tight font-[sora]">
 					Chosen by <br /> Educators Worldwide
 				</h1>
-				<p className="font-inter font-extralight text-lg leading-none text-center">
+				<p className="font-inter font-light text-lg leading-none text-center">
 					See why educators everywhere choose Teachmint X to transform <br />{" "}
 					their everyday teaching experience.
 				</p>
 			</div>
 
-			<GlowWrapper glowTop glowBottom={false} glowSize="100%">
-				<div className="h-[60vh] w-[70vw] bg-background/50 backdrop-blur-sm shadow-sm rounded-3xl flex flex-col border border-white/5">
-					<div className="h-[85%] w-full flex">
-						<div className="h-full w-1/2 flex items-center justify-center p-6">
-							<div className="relative h-[90%] w-[73%] rounded-xl">
-								<AnimatePresence mode="wait">
-									<motion.div
-										key={active.id}
-										initial={{ opacity: 0, scale: 1.04 }}
-										animate={{ opacity: 1, scale: 1 }}
-										exit={{ opacity: 0, scale: 0.98 }}
-										transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-										className="absolute inset-0"
-									>
-										<Image
-											src={active.avatar}
-											alt={active.name}
-											fill
-											sizes="280px"
-											className="object-cover"
-										/>
-									</motion.div>
-								</AnimatePresence>
-							</div>
-						</div>
+			<div className="dynamic-border h-[60vh] w-[70vw] bg-black/5 backdrop-blur-sm shadow-sm rounded-3xl flex flex-col relative">
+				<div
+					aria-hidden
+					className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"
+					style={{ background: "#3b82f6" }}
+				/>
 
-						<div className="h-full w-1/2 flex flex-col items-start justify-center gap-6 pr-10">
+				{/* bottom-right orange glow */}
+				<div
+					aria-hidden
+					className="pointer-events-none absolute top-0 right-0 h-64 w-64 translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"
+					style={{ background: "#f97316" }}
+				/>
+
+
+				<div className="h-[85%] w-full flex">
+					<div className="h-full w-1/2 flex items-center justify-center p-6">
+						<div className="relative h-[90%] w-[73%] rounded-xl">
 							<AnimatePresence mode="wait">
 								<motion.div
 									key={active.id}
-									initial={{ opacity: 0, y: 16 }}
-									animate={{ opacity: 1, y: 0 }}
-									exit={{ opacity: 0, y: -16 }}
+									initial={{ opacity: 0, scale: 1.04 }}
+									animate={{ opacity: 1, scale: 1 }}
+									exit={{ opacity: 0, scale: 0.98 }}
 									transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-									className="flex flex-col gap-6"
+									className="absolute inset-0"
 								>
-									<p className="text-2xl font-[times] leading-snug ">
-										&ldquo;{active.quote}&rdquo;
-									</p>
-									<span className="flex flex-col gap-0.5">
-										<p className="text-lg">
-											{active.name}
-										</p>
-										<p className="text-sm font-inter font-extralight text-white/60">
-											{active.position}
-										</p>
-									</span>
+									<Image
+										src={active.avatar}
+										alt={active.name}
+										fill
+										sizes="280px"
+										className="object-cover"
+									/>
 								</motion.div>
 							</AnimatePresence>
 						</div>
 					</div>
 
-					<div className="h-[15%] w-full rounded-b-3xl grid grid-cols-6 divide-x divide-black/15">
-						{REVIEWS.map((review, index) => {
-							const isActive = index === activeIndex;
-							return (
-								<button
-									key={review.id}
-									onClick={() => setActiveIndex(index)}
-									className={`h-full w-full flex items-center justify-center border-t transition-colors cursor-pointer ${isActive
-										? "border-t-transparent bg-white/4"
-										: "border-t-white/5 hover:bg-white/[0.03]"
-										} ${index === 0 ? "rounded-bl-3xl" : ""} ${index === REVIEWS.length - 1 ? "rounded-br-3xl" : ""
-										}`}
-								>
-									<span
-										className={`text-sm font-inter transition-opacity ${isActive
-											? "opacity-100 font-medium"
-											: "opacity-50"
-											}`}
-									>
-										{review.name}
-									</span>
-								</button>
-							);
-						})}
+					<div className="h-full w-1/2 flex flex-col items-start justify-center gap-6 pr-10">
+						<AnimatePresence mode="wait">
+							<motion.div
+								key={active.id}
+								initial={{ opacity: 0, y: 16 }}
+								animate={{ opacity: 1, y: 0 }}
+								exit={{ opacity: 0, y: -16 }}
+								transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+								className="flex flex-col gap-6"
+							>
+								<p className="text-2xl font-inter leading-snug">
+									&ldquo;{active.quote}&rdquo;
+								</p>
+								<span className="flex flex-col">
+									<p className="text-lg font-[sora]">
+										{active.name}
+									</p>
+									<p className="text-sm font-[sora] font-extralight text-black/60">
+										{active.position}
+									</p>
+								</span>
+							</motion.div>
+						</AnimatePresence>
 					</div>
 				</div>
-			</GlowWrapper>
+
+				<div className="h-[15%] w-full rounded-b-3xl grid grid-cols-6 divide-x divide-black/5">
+					{REVIEWS.map((review, index) => {
+						const isActive = index === activeIndex;
+						return (
+							<button
+								key={review.id}
+								onClick={() => setActiveIndex(index)}
+								className={`h-full w-full flex items-center justify-center border-t transition-colors cursor-pointer ${isActive ? "border-t-transparent bg-white/4" : "border-t-black/5 hover:bg-white/[0.03]"} ${index === 0 ? "rounded-bl-3xl" : ""} ${index === REVIEWS.length - 1 ? "rounded-br-3xl" : ""}`}
+							>
+								<span
+									className={`text-sm font-[sora] transition-opacity ${isActive ? "opacity-100 font-medium" : "opacity-50"}`}
+								>
+									{review.name}
+								</span>
+							</button>
+						);
+					})}
+				</div>
+			</div>
 		</div>
 	);
 }

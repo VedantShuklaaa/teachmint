@@ -11,7 +11,7 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Video />
+      <Video isVideo src="/hero/product-video-x2.webm"/>
       <FeatureCarousel />
       <WhiteBoardFunctions />
       <TrustedBySection />
