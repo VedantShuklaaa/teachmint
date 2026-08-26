@@ -31,7 +31,7 @@ const productItems: NavItem[] = [
 	{ kind: "icon", href: "/products/eduai", title: "EduAI", description: "AI-Powered smart and intelligent personal teaching assistant.", icon: SparklesIcon },
 	{ kind: "icon", href: "/products/interactive-whiteboard", title: "Interactive Whiteboard", description: "Elevate Teaching & Learning with Teachmint X Interactive Whiteboard.", icon: PenToolIcon },
 	{ kind: "icon", href: "/products/visionx", title: "VisionX", description: "Real-time Classroom Monitoring System", icon: EyeIcon },
-	{ kind: "icon", href: "/products/clickx", title: "Click X", description: "Bring AI to Every Student", icon: ClipboardCheckIcon },
+	{ kind: "icon", href: "/products/clickx-student-clickers-for-classroom", title: "Click X", description: "Bring AI to Every Student", icon: ClipboardCheckIcon },
 	{ kind: "icon", href: "/products/sharex", title: "ShareX", description: "Screen Sharing for Classrooms", icon: CastIcon },
 ];
 

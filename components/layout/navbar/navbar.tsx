@@ -87,7 +87,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 					y: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
 				}}
 				style={{ maxWidth: "calc(100vw - 2rem)", willChange: "width, transform" }}
-				className="overflow-hidden rounded-xl border border-black/10 dark:border-white/10 bg-background/50 backdrop-blur-sm shadow-sm"
+				className="overflow-hidden rounded-xl border border-black/10 bg-black/5 backdrop-blur-sm shadow-sm"
 			>
 				<div className="grid grid-cols-3 items-center px-6 py-3">
 					<TransitionLink
@@ -97,7 +97,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 						aria-label="Teachmint home"
 					>
 						<Image
-							src="/TMLogo3.svg"
+							src="/TMLogo2.svg"
 							height={180}
 							width={180}
 							alt="Teachmint logo"
@@ -125,8 +125,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 										}
 									}}
 									onMouseEnter={() => handleLinkHover(link.key)}
-									className={`group relative flex items-center gap-1 font-inter text-sm text-md cursor-pointer font-extralight transition-colors ${isActive ? "text-[#eee4de]" : "text-white"
-										}`}
+									className={`group relative flex items-center gap-1 font-[sora] text-sm text-md cursor-pointer font-extralight transition-colors ${isActive ? "text-zinc-400" : "text-black"}`}
 								>
 									{link.label}
 									{hasSubmenu && (
@@ -144,7 +143,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 						<Button variant="secondary" size="md" className="cursor-pointer">
 							Sign up
 						</Button>
-						<Button variant="primary" size="md" className="cursor-pointer">
+						<Button variant="primary" size="md" className="cursor-pointer bg-black">
 							Shop Now
 						</Button>
 					</div>
@@ -182,7 +181,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 											{activeKey === "devices" ? (
 												<DeviceHeroCarousel />
 											) : (
-												<TransitionLink href={categoryInfo[activeKey].href} className="w-100 h-100 rounded-xl overflow-hidden bg-foreground/5 shrink-0 flex flex-col cursor-pointer">
+												<TransitionLink href={categoryInfo[activeKey].href} className="w-100 h-100 rounded-xl overflow-hidden bg-black/10 shrink-0 flex flex-col cursor-pointer">
 													<div className="relative w-full h-[60%] p-2">
 														<div className="relative w-full h-full">
 															<Image
@@ -196,7 +195,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 														</div>
 													</div>
 													<div className="h-[40%] px-4 py-3 flex flex-col justify-center">
-														<p className="text-xl font-[times] text-foreground truncate">
+														<p className="text-xl font-[sora] text-foreground truncate">
 															{categoryInfo[activeKey].title}
 														</p>
 														<p className="text-lg text-foreground/60 line-clamp-2 break-words leading-none">
@@ -236,7 +235,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															<li key={item.href}>
 																<TransitionLink
 																	href={item.href}
-																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
+																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-[sora]"
 																>
 																	{item.label}
 																</TransitionLink>
@@ -253,7 +252,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 															<li key={item.href}>
 																<TransitionLink
 																	href={item.href}
-																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-inter"
+																	className="text-sm text-foreground/70 hover:text-foreground transition-colors whitespace-nowrap font-[sora]"
 																>
 																	{item.label}
 																</TransitionLink>
@@ -280,7 +279,7 @@ function NavItemCard({ item }: { item: NavItem }) {
 	if (item.kind === "image") {
 		return (
 			<TransitionLink href={item.href} className="group">
-				<div className="h-100 w-full aspect-square rounded-xl overflow-hidden bg-foreground/5 backdrop-blur-xl transition-colors duration-300 flex flex-col">
+				<div className="h-100 w-full aspect-square rounded-xl overflow-hidden bg-black/10 backdrop-blur-xl transition-colors duration-300 flex flex-col">
 					<div className="relative w-full h-[60%] p-2">
 						<div className="relative w-full h-full">
 							<Image
@@ -293,7 +292,7 @@ function NavItemCard({ item }: { item: NavItem }) {
 						</div>
 					</div>
 					<div className="h-[40%] px-3 py-2 flex flex-col justify-center">
-						<p className="text-xl font-inter text-foreground line-clamp-2 break-words">
+						<p className="text-xl font-[sora] text-foreground line-clamp-2 break-words">
 							{item.title}
 						</p>
 					</div>
@@ -323,7 +322,7 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 	return (
 		<TransitionLink
 			href={item.href}
-			className="flex items-center gap-3 group bg-foreground/5 hover:bg-foreground/10 rounded-lg duration-300 p-2"
+			className="flex items-center gap-3 group bg-black/10 hover:bg-black/15 rounded-lg duration-300 p-2"
 			aria-label={item.description ? `${item.title} — ${item.description}` : item.title}
 		>
 			<div className="flex items-center justify-center w-14 h-14 shrink-0 rounded-lg bg-[#eee4de] transition-colors">
@@ -337,7 +336,7 @@ function IconNavItemCard({ item }: { item: IconItem }) {
 				/>
 			</div>
 			<div className="flex flex-col h-full items-start">
-				<p className="text-sm font-inter text-foreground">{item.title}</p>
+				<p className="text-sm font-[sora] text-foreground">{item.title}</p>
 				<p className="text-xs text-foreground/60 font-inter">{item.description}</p>
 			</div>
 		</TransitionLink>
@@ -390,7 +389,7 @@ function DeviceHeroCarousel() {
 			<div className="h-[40%] px-4 py-3 flex items-center justify-center">
 				<Link
 					href="/devices"
-					className={buttonVariants({ variant: "primary", size: "lg" })}
+					className={buttonVariants({ variant: "primary", size: "lg", className: "bg-black" })}
 				>
 					Explore all devices
 				</Link>
