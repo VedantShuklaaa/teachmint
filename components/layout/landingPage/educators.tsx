@@ -76,7 +76,7 @@ export default function Educators() {
 	}, [activeIndex]);
 
 	return (
-		<div className="w-full flex flex-col items-center justify-center gap-20 py-30">
+		<div className="w-full flex flex-col items-center justify-center gap-15 py-20">
 			<div className="flex flex-col gap-2">
 				<h1 className="text-5xl text-center leading-none tracking-tight font-[sora]">
 					Chosen by <br /> Educators Worldwide
