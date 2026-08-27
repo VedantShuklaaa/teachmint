@@ -125,7 +125,7 @@ export default function AIServices() {
 						delay: CONTAINER_DURATION,
 						ease: [0.22, 1, 0.36, 1],
 					}}
-					className="text-5xl tracking-tight leading-none text-black font-[sora] max-w-3xl text-center">
+					className="text-5xl tracking-tight leading-none text-black font-[sora] max-w-2xl text-center">
 					Transform Your Teaching with EduAI
 				</motion.h1>
 				<motion.p

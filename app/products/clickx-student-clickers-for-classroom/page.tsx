@@ -1,6 +1,6 @@
 import DeviceFeatures from "@/components/layout/products/clickXStudentClickersForClassroom/deviceFeatures";
 import DeviceImages from "@/components/layout/products/clickXStudentClickersForClassroom/deviceImages";
-import FAQ from "@/components/layout/products/clickXStudentClickersForClassroom/FAQ";
+import ClickXFAQ from "@/components/layout/products/clickXStudentClickersForClassroom/clickXFAQ";
 import Hero from "@/components/layout/products/clickXStudentClickersForClassroom/hero";
 import DeviceTestimonial from "@/components/layout/products/clickXStudentClickersForClassroom/testimonial";
 
@@ -13,7 +13,7 @@ export default function Page() {
 			<DeviceImages />
 			<DeviceFeatures />
 			<DeviceTestimonial />
-			<FAQ />
+			<ClickXFAQ />
 		</div>
 	)
 }

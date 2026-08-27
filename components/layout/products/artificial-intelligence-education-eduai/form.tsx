@@ -99,7 +99,7 @@ export default function Form() {
 							className="resize-y rounded-lg bg-zinc-200 px-4 py-3 text-sm text-zinc-800 placeholder:text-zinc-500 font-inter outline-none focus:ring-2 focus:ring-blue-500"
 						/>
 					</div>
-					<Button variant="secondary" className="cursor-pointer">
+					<Button variant="secondary" className="cursor-pointer" type="submit">
 						Submut
 					</Button>
 				</motion.div>

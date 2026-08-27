@@ -1,12 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown } from "lucide-react";
-
-interface FAQItem {
-	question: string;
-	answer: string | string[];
-}
+import FAQSection, { FAQItem } from "@/components/ui/sections/FAQSection";
 
 const FAQ_ITEMS: FAQItem[] = [
 	{ question: "What is Click X?", answer: "Click X is a student response system that helps every student interact with lessons in real time, ensuring full participation and instant performance insights." },
@@ -32,54 +26,9 @@ const FAQ_ITEMS: FAQItem[] = [
 	},
 ];
 
-function FAQRow({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
-	return (
-		<div className="border-b border-white/10 py-4">
-			<button
-				onClick={onToggle}
-				className="w-full flex items-center justify-between gap-6 text-left cursor-pointer"
-			>
-				<span className="text-xl sm:text-xl font-[sora]">{item.question}</span>
-				<motion.span
-					animate={{ rotate: isOpen ? 180 : 0 }}
-					transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-					className="shrink-0"
-				>
-					<ChevronDown className="h-6 w-6" />
-				</motion.span>
-			</button>
 
-			<AnimatePresence initial={false}>
-				{isOpen && (
-					<motion.div
-						initial={{ height: 0, opacity: 0 }}
-						animate={{ height: "auto", opacity: 1 }}
-						exit={{ height: 0, opacity: 0 }}
-						transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-						className="overflow-hidden"
-					>
-						{Array.isArray(item.answer) ? (
-							<ul className="pt-4 flex flex-col gap-2">
-								{item.answer.map((point, i) => (
-									<li key={i} className="flex items-start gap-2 text-md text-zinc-800 font-inter font-light leading-relaxed">
-										<span className="mt-2.5 h-1.5 w-1.5 rounded-full bg-zinc-800 shrink-0" />
-										<span>{point}</span>
-									</li>
-								))}
-							</ul>
-						) : (
-							<p className="pt-4 text-md text-zinc-800 font-inter font-light leading-relaxed">
-								{item.answer}
-							</p>
-						)}
-					</motion.div>
-				)}
-			</AnimatePresence>
-		</div>
-	);
-}
 
-export default function FAQ() {
+export default function ClickXFAQ() {
 	const [openIndex, setOpenIndex] = useState<number | null>(0);
 
 	return (
@@ -90,7 +39,7 @@ export default function FAQ() {
 
 			<div className="flex flex-col max-w-[55vw] w-full">
 				{FAQ_ITEMS.map((item, i) => (
-					<FAQRow
+					<FAQSection
 						key={item.question}
 						item={item}
 						isOpen={openIndex === i}
