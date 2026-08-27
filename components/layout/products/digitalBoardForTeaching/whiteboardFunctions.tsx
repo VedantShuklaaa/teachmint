@@ -1,49 +1,75 @@
-import ThreeDHoverGallery, { GalleryItem } from "@/components/lightswind/3d-hover-gallery";
+"use client";
 
-const galleryItems: GalleryItem[] = [
+import ImageCarousel, {
+	type ImageCarouselItem,
+} from "@/components/ui/cards/imageCarousel";
+
+import { motion } from "motion/react";
+
+const galleryItems: ImageCarouselItem[] = [
 	{
-		url: "/products/DBT/recordandshare.webp",
+		src: "/products/DBT/recordandshare.webp",
+		alt: "Teachmint - Record and Share",
 		title: "Record & Share",
-		category: "Collaboration",
-		description: "Record lessons and share whiteboard sessions with ease.",
-		glow: "rgba(59,130,246,0.35)",
+		description:
+			"Record lessons and share whiteboard sessions with ease.",
 	},
 	{
-		url: "/products/DBT/import.webp",
+		src: "/products/DBT/import.webp",
+		alt: "Teachmint - Import",
 		title: "Import Files",
-		category: "File Management",
-		description: "Bring in PDFs, images and more to teach your way.",
-		glow: "rgba(14,165,233,0.35)",
+		description:
+			"Bring in PDFs, images and more to teach your way.",
 	},
 	{
-		url: "/products/DBT/autosync.webp",
+		src: "/products/DBT/autosync.webp",
+		alt: "Teachmint - Autosync",
 		title: "Auto-Sync",
-		category: "Cloud Sync",
-		description: "Keep every lesson automatically saved and ready to access.",
-		glow: "rgba(99,102,241,0.35)",
+		description:
+			"Keep every lesson automatically saved and ready to access.",
 	},
 	{
-		url: "/products/DBT/splitscreen.webp",
+		src: "/products/DBT/splitscreen.webp",
+		alt: "Teachmint - Split Screen",
 		title: "Split Screen",
-		category: "Multitasking",
-		description: "Run multiple apps side by side without interrupting your lesson.",
-		glow: "rgba(168,85,247,0.35)",
+		description:
+			"Run multiple apps side by side without interrupting your lesson.",
 	},
 	{
-		url: "/products/DBT/liveclasses.webp",
+		src: "/products/DBT/liveclasses.webp",
+		alt: "Teachmint - Live Classes",
 		title: "Live Classes",
-		category: "Virtual Classroom",
-		description: "Teach live, engage students and keep every session recorded.",
-		glow: "rgba(236,72,153,0.35)",
+		description:
+			"Teach live, engage students and keep every session recorded.",
 	},
 ];
 
+const CONTAINER_DURATION = 1;
+
 export default function WhiteboardFunction() {
 	return (
-		<div className="w-[70vw] mx-auto flex flex-col justify-center gap-10 py-10">
-			<h1 className="text-4xl sm:text-5xl tracking-wider leading-none text-[#ede5df] font-[times] max-w-5xl">Teach, record, share & multitask with ease</h1>
+		<div className="flex flex-col py-20 gap-15">
+			<motion.h1
+				initial={{ y: 60, opacity: 0 }}
+				animate={{ y: 0, opacity: 1 }}
+				transition={{
+					duration: 0.8,
+					delay: CONTAINER_DURATION,
+					ease: [0.22, 1, 0.36, 1],
+				}}
+				className="text-4xl tracking-tight leading-none text-black font-[sora] max-w-4xl text-center mx-auto"
+			>
+				Teach, record, share & multitask with ease
+			</motion.h1>
 
-			<ThreeDHoverGallery items={galleryItems} autoPlay/>
+			<ImageCarousel
+				items={galleryItems}
+				maxVisible={4}
+				cardWidth={320}
+				imageHeight={200}
+				gap={16}
+				className="!py-0"
+			/>
 		</div>
-	)
+	);
 }
