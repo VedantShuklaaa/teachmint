@@ -7,7 +7,7 @@ export default function KnowMore() {
 		<div className="h-[30vh] w-full flex flex-col">
 			<div className="h-full w-[70vw] mx-auto gap-6 flex flex-col justify-center">
 				<div className="flex flex-col gap-4">
-					<h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-white font-[times] max-w-5xl">An unlimited <br /> canvas of technology</h1>
+					<h1 className="text-4xl sm:text-5xl font-bold tracking-wider leading-none text-white font-[sora] max-w-5xl">An unlimited <br /> canvas of technology</h1>
 					<p className="text-lg sm:text-xl text-zinc-300 max-w-3xl font-inter leading-[1.2]">Teachmint X comes with the most advanced Digital Board for teaching, built for the modern day educators to make teaching immersive & learning interactive.</p>
 				</div>
 

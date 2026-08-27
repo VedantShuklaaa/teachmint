@@ -5,17 +5,37 @@ import Image from "next/image";
 const CONTAINER_DURATION = 1;
 
 interface SafetyFeatureItem {
-	title: string;
-	description: string;
+	title?: string;
+	description?: string;
 }
 
-interface SafetyFeature {
+export interface SafetyFeature {
 	src: string;
 	alt: string;
+	isVideo?: boolean;
 	items: SafetyFeatureItem[];
 }
 
-function SafetyFeatureCard({ feature, imageOnRight }: { feature: SafetyFeature; imageOnRight: boolean }) {
+function SafetyFeatureMedia({ feature }: { feature: SafetyFeature }) {
+	return (
+		<div className="h-full w-1/2 relative">
+			{feature.isVideo ? (
+				<video
+					src={feature.src}
+					autoPlay
+					muted
+					loop
+					playsInline
+					className="h-full w-full object-cover"
+				/>
+			) : (
+				<Image src={feature.src} alt={feature.alt} fill className="object-cover" />
+			)}
+		</div>
+	);
+}
+
+export function SafetyFeatureCard({ feature, imageOnRight }: { feature: SafetyFeature; imageOnRight: boolean }) {
 	return (
 		<div className="dynamic-border h-130 w-full rounded-2xl bg-black/5 flex overflow-hidden relative">
 			<div
@@ -31,15 +51,11 @@ function SafetyFeatureCard({ feature, imageOnRight }: { feature: SafetyFeature; 
 				style={{ background: "#f97316" }}
 			/>
 
-			{!imageOnRight && (
-				<div className="h-full w-1/2 relative">
-					<Image src={feature.src} alt={feature.alt} fill className="object-cover" />
-				</div>
-			)}
+			{!imageOnRight && <SafetyFeatureMedia feature={feature} />}
 
 			<div className="h-full w-1/2 flex flex-col justify-center p-8 gap-0">
 				{feature.items.map((item, i) => (
-					<div key={item.title} className="flex flex-col">
+					<div key={i} className="flex flex-col">
 						<div className="flex flex-col gap-2 py-6">
 							<p className="text-3xl tracking-tight leading-none font-[sora] text-left">
 								{item.title}
@@ -60,11 +76,7 @@ function SafetyFeatureCard({ feature, imageOnRight }: { feature: SafetyFeature; 
 				))}
 			</div>
 
-			{imageOnRight && (
-				<div className="h-full w-1/2 relative">
-					<Image src={feature.src} alt={feature.alt} fill className="object-cover" />
-				</div>
-			)}
+			{imageOnRight && <SafetyFeatureMedia feature={feature} />}
 		</div>
 	);
 }
