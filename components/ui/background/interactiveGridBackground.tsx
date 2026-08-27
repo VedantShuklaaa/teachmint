@@ -7,9 +7,7 @@ import { cn } from "@/lib/utils";
 interface InteractiveGridBackgroundProps {
 	children?: ReactNode;
 	className?: string;
-	/** radius in px of the darkening halo around the cursor */
 	radius?: number;
-	/** grid cell size in px */
 	cellSize?: number;
 }
 

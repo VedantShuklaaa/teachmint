@@ -1,4 +1,5 @@
 "use client";
+import GradientBlinds from "@/components/ui/background/gradientBlinds";
 import { Button } from "@/components/ui/button/button";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -31,8 +32,24 @@ const certItem = {
 
 export default function Hero() {
 	return (
-		<section className="flex flex-col w-full">
-			<div className="h-[80vh] w-full flex flex-col items-center justify-end text-center gap-15  px-[5%] relative ">
+		<section className="relative flex flex-col w-full min-h-[80vh] overflow-hidden">
+			<GradientBlinds
+				className="absolute inset-1 -z-10"
+				gradientColors={['#FF9FFC', '#1ea1f2']}
+				angle={20}
+				noise={0.1}
+				blindCount={16}
+				blindMinWidth={60}
+				spotlightRadius={0.3}
+				spotlightSoftness={0.5}
+				spotlightOpacity={1}
+				mouseDampening={0.15}
+				distortAmount={0}
+				shineDirection="left"
+				mixBlendMode="lighten"
+			/>
+
+			<div className="h-[80vh] w-full flex flex-col items-center justify-end text-center gap-15 px-[5%] relative">
 				<div className="flex flex-col items-center gap-6 py-[5rem]">
 					<div className="flex flex-col items-center">
 						<motion.h1
@@ -43,7 +60,7 @@ export default function Hero() {
 								delay: CONTAINER_DURATION,
 								ease: [0.22, 1, 0.36, 1],
 							}}
-							className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-wider leading-none text-[#ede5df] font-[times] max-w-5xl"
+							className="text-4xl sm:text-5xl md:text-6xl tracking-tight leading-none text-white font-[sora] max-w-5xl"
 						>
 							<span className="bg-gradient-to-r from-[#ea4335] via-[#fbbc05] via-[#34a853] to-[#4285f4] bg-clip-text text-transparent">
 								Google
@@ -107,7 +124,6 @@ export default function Hero() {
 					))}
 				</motion.div>
 			</div>
-
 		</section>
-	)
+	);
 }

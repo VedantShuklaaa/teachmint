@@ -10,6 +10,8 @@ import {
 	LinkedinIcon,
 } from "@animateicons/react/lucide";
 import { useEffect, useRef } from "react";
+import KnowMore from "../products/classroomPlatform/knowMore";
+import { usePathname } from "next/navigation";
 
 const COMPANY_LINKS = [
 	{ label: "About Us", href: "/about" },
@@ -90,8 +92,8 @@ const fadeUp = {
 	},
 };
 
-const ICON_DURATION = 1; // seconds — matches the icon's own animation duration
-const LOOP_DELAY = 1000; // ms pause between each restart
+const ICON_DURATION = 1; 
+const LOOP_DELAY = 1000; 
 
 function LoopingSocialIcon({
 	Icon,
@@ -123,9 +125,15 @@ function FooterLink({ label, href }: { label: string; href: string }) {
 	);
 }
 
+const CLASSROOM_PLATFORM_ROUTE = "/products/classroom-platform";
+
 export default function Footer() {
+	const pathname = usePathname();
+	const showClassroomHero = pathname === CLASSROOM_PLATFORM_ROUTE;
+
 	return (
 		<footer className="relative w-full overflow-hidden border-t border-white/10 bg-black">
+			{showClassroomHero && <KnowMore />}
 			{/* subtle ambient glow */}
 			<div
 				className="pointer-events-none absolute -top-40 left-1/2 h-[500px] w-[900px] -translate-x-1/2 blur-3xl"
@@ -141,7 +149,7 @@ export default function Footer() {
 				initial="hidden"
 				whileInView="visible"
 				viewport={{ once: true, amount: 0.2 }}
-				className="relative mx-auto grid w-[85vw] max-w-7xl grid-cols-1 gap-12 py-20 sm:grid-cols-2 lg:grid-cols-4"
+				className="relative mx-auto grid w-[70vw] max-w-7xl grid-cols-1 gap-12 py-20 sm:grid-cols-2 lg:grid-cols-4"
 			>
 				{/* Company */}
 				<motion.div variants={fadeUp} className="flex flex-col gap-5">

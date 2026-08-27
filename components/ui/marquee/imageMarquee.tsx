@@ -71,7 +71,7 @@ export function ImageMarquee() {
 								className="object-cover"
 							/>
 						</div>
-						<p className="text-md font-medium text-[#ede5df] text-center leading-snug">
+						<p className="text-md font-light font-[sora] text-center leading-none">
 							{item.title}
 						</p>
 					</div>
