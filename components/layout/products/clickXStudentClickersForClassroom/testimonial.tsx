@@ -1,11 +1,8 @@
 "use client";
-import { motion } from "motion/react";
 import type { LucideIcon } from "lucide-react";
 import { ArrowUpDown, User, Target, MessageSquare, Sparkle } from "lucide-react";
-import { Button } from "@/components/ui/button/button";
 import Video from "../../landingPage/videoSection";
 
-const CONTAINER_DURATION = 1;
 
 type EduAIFeature = {
 	icon: LucideIcon;

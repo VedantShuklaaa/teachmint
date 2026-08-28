@@ -87,7 +87,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 					y: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
 				}}
 				style={{ maxWidth: "calc(100vw - 2rem)", willChange: "width, transform" }}
-				className="overflow-hidden rounded-xl border border-black/10 bg-black/5 backdrop-blur-sm shadow-sm"
+				className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm"
 			>
 				<div className="grid grid-cols-3 items-center px-6 py-3">
 					<TransitionLink
