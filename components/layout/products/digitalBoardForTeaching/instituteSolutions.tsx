@@ -31,7 +31,7 @@ const CONTAINER_DURATION = 1;
 
 export default function InstituteSolutions() {
 	return (
-		<div className="flex flex-col py-20 gap-15">
+		<div className="w-[70vw] mx-auto flex flex-col py-20 gap-15">
 			<div className="flex flex-col gap-4 items-center">
 				<motion.h1
 					initial={{ y: 60, opacity: 0 }}

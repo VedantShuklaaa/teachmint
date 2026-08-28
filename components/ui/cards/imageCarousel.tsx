@@ -8,7 +8,7 @@ export interface ImageCarouselItem {
 	src: string;
 	alt: string;
 	title: string;
-	description: string;
+	description?: string;
 }
 
 interface ImageCarouselProps {
@@ -33,7 +33,7 @@ export default function ImageCarousel({
 	gap = 16,
 	maxVisible = 4,
 	className = "",
-	cardClassName = "rounded-xl border border-black/10 overflow-hidden flex flex-col bg-white",
+	cardClassName = "rounded-xl border border-black/10 overflow-hidden flex flex-col bg-white h-full",
 	imageWrapperClassName = "relative w-full",
 	imageClassName = "object-cover",
 	titleClassName = "text-base font-[sora] text-black leading-none p-4 pb-0",
@@ -41,7 +41,6 @@ export default function ImageCarousel({
 	sizes = "(max-width: 768px) 90vw, 320px",
 }: ImageCarouselProps) {
 	const scrollRef = useRef<HTMLDivElement>(null);
-
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
 	const [canScrollRight, setCanScrollRight] = useState(true);
 
@@ -49,11 +48,9 @@ export default function ImageCarousel({
 
 	const updateScrollState = useCallback(() => {
 		const el = scrollRef.current;
-
 		if (!el) return;
 
 		setCanScrollLeft(el.scrollLeft > 4);
-
 		setCanScrollRight(
 			el.scrollLeft < el.scrollWidth - el.clientWidth - 4
 		);
@@ -64,7 +61,6 @@ export default function ImageCarousel({
 		if (!el) return;
 
 		updateScrollState();
-
 		if (!showControls) return;
 
 		el.addEventListener("scroll", updateScrollState);
@@ -81,7 +77,6 @@ export default function ImageCarousel({
 		if (!el) return;
 
 		const amount = cardWidth + gap;
-
 		el.scrollBy({
 			left: direction === "left" ? -amount : amount,
 			behavior: "smooth",
@@ -97,14 +92,14 @@ export default function ImageCarousel({
 				ref={scrollRef}
 				className={
 					showControls
-						? "flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
-						: "flex flex-wrap justify-center gap-4"
+						? "flex items-stretch gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+						: "flex flex-wrap items-stretch justify-center gap-4"
 				}
 			>
 				{items.map((item, index) => (
 					<div
 						key={index}
-						className={showControls ? "shrink-0 snap-start" : ""}
+						className={showControls ? "shrink-0 snap-start h-auto" : "h-auto"}
 						style={{
 							width: cardWidth,
 						}}
@@ -127,13 +122,9 @@ export default function ImageCarousel({
 							</div>
 
 							{/* Content */}
-							<p className={titleClassName}>
-								{item.title}
-							</p>
+							<p className={titleClassName}>{item.title}</p>
 
-							<p className={descriptionClassName}>
-								{item.description}
-							</p>
+							<p className={`${descriptionClassName} flex-1`}>{item.description}</p>
 						</div>
 					</div>
 				))}
