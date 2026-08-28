@@ -12,7 +12,7 @@ export default function Support() {
 			</div>
 
 			<div className="w-[70vw] flex items-center justify-center gap-10 [perspective:1200px] mx-auto">
-				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300">
+				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300 overflow-hidden">
 					<div
 						aria-hidden
 						className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"
@@ -28,7 +28,7 @@ export default function Support() {
 
 					
 				</div>
-				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300">
+				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300 overflow-hidden">
 					<div
 						aria-hidden
 						className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"
@@ -44,7 +44,7 @@ export default function Support() {
 
 					
 				</div>
-				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300">
+				<div className="dynamic-border relative aspect-[4/5] w-[33%] bg-black/[0.06] backdrop-blur-xl backdrop-saturate-150  rounded-xl transition-transform duration-300 overflow-hidden">
 					<div
 						aria-hidden
 						className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"

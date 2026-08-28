@@ -87,7 +87,7 @@ export default function Educators() {
 				</p>
 			</div>
 
-			<div className="dynamic-border h-[60vh] w-[70vw] bg-black/5 backdrop-blur-sm shadow-sm rounded-3xl flex flex-col relative">
+			<div className="dynamic-border h-[60vh] w-[70vw] bg-black/5 backdrop-blur-sm shadow-sm rounded-3xl flex flex-col relative overflow-hidden">
 				<div
 					aria-hidden
 					className="pointer-events-none absolute bottom-0 left-0 h-64 w-64 -translate-x-1/3 translate-y-1/3 rounded-full blur-3xl opacity-30"

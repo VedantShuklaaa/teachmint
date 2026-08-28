@@ -6,7 +6,7 @@ const CONTAINER_DURATION = 1;
 
 export default function TrustedBySection() {
 	return (
-		<div className="max-w-[70vw] mx-auto flex flex-col justify-center items-center overflow-hidden py-20 gap-15">
+		<div className="max-w-[70vw] mx-auto flex flex-col items-center overflow-hidden py-20 gap-15">
 			<motion.h1
 				initial={{ y: 60, opacity: 0 }}
 				animate={{ y: 0, opacity: 1 }}
