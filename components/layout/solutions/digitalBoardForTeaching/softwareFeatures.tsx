@@ -10,10 +10,13 @@ const SOFTWARE_FEATURES: SafetyFeature[] = [
 		alt: "Teachmint - Smart Board for Classroom",
 		items: [
 			{
+				titleSize: "text-2xl",
 				title: "Access YouTube, Wikipedia & Google Search.",
 			}, {
+				titleSize: "text-2xl",
 				title: "Manage classroom attendance & student reports digitally.",
 			}, {
+				titleSize: "text-2xl",
 				title: "Record, conduct & share live class sessions.",
 			},
 		],
@@ -22,10 +25,13 @@ const SOFTWARE_FEATURES: SafetyFeature[] = [
 		alt: "Teachmint - Digital Smart Board for Teaching",
 		items: [
 			{
+				titleSize: "text-2xl",
 				title: "Create, assign & analyze custom Homework & Assessments.",
 			}, {
+				titleSize: "text-2xl",
 				title: "Prepare, edit & share classroom sessions with whiteboard recordings.",
 			}, {
+				titleSize: "text-2xl",
 				title: "Manage visibility across various stakeholders.",
 			},
 		],

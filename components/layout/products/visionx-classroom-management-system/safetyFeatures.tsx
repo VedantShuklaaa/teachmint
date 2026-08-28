@@ -7,6 +7,7 @@ const CONTAINER_DURATION = 1;
 interface SafetyFeatureItem {
 	title?: string;
 	description?: string;
+	titleSize?: string;
 }
 
 export interface SafetyFeature {
@@ -57,7 +58,7 @@ export function SafetyFeatureCard({ feature, imageOnRight }: { feature: SafetyFe
 				{feature.items.map((item, i) => (
 					<div key={i} className="flex flex-col">
 						<div className="flex flex-col gap-2 py-6">
-							<p className="text-3xl tracking-tight leading-none font-[sora] text-left">
+							<p className={`${item.titleSize ?? "text-3xl"} tracking-tight leading-none font-[sora] text-left`}>
 								{item.title}
 							</p>
 							<p className="text-base sm:text-lg text-zinc-700 leading-[1.2] font-inter font-light text-left">

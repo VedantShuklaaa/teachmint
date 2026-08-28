@@ -86,7 +86,7 @@ export function IconGridSupport({
 				{heading}
 			</motion.h1>
 
-			<div className="flex w-full items-center">
+			<div className="flex w-full items-center h-[50vh]">
 				{!imageOnRight && <IconGridMedia src={imageSrc} alt={imageAlt} isVideo={isVideo} />}
 				<IconGrid items={items} />
 				{imageOnRight && <IconGridMedia src={imageSrc} alt={imageAlt} isVideo={isVideo} />}

@@ -73,7 +73,7 @@ export default function EDLA() {
 						</div>
 						<div className="flex flex-col gap-2">
 							<p className="font-[sora] text-xl text-center leading-none">{feature.title}</p>
-							{feature.description && <p className="text-md font-inter text-center leading-none">{feature.description}</p>}
+							{feature.description && <p className="text-md font-inter text-center leading-none max-w-xs">{feature.description}</p>}
 						</div>
 					</div>
 				))}

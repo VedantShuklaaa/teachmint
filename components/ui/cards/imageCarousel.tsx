@@ -3,12 +3,17 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export interface ImageCarouselItem {
 	src: string;
 	alt: string;
 	title: string;
+	href?: string;
+	hoverScale?: boolean,
 	description?: string;
+	textAlign?: "left" | "center" | "right";
+	imageFit?: "cover" | "contain";
 }
 
 interface ImageCarouselProps {
@@ -24,7 +29,20 @@ interface ImageCarouselProps {
 	titleClassName?: string;
 	descriptionClassName?: string;
 	sizes?: string;
+	textAlign?: "left" | "center" | "right";
+	imageFit?: "cover" | "contain";
 }
+
+const TEXT_ALIGN_CLASS: Record<"left" | "center" | "right", string> = {
+	left: "text-left",
+	center: "text-center",
+	right: "text-right",
+};
+
+const IMAGE_FIT_CLASS: Record<"cover" | "contain", string> = {
+	cover: "object-cover",
+	contain: "object-contain",
+};
 
 export default function ImageCarousel({
 	items,
@@ -35,10 +53,12 @@ export default function ImageCarousel({
 	className = "",
 	cardClassName = "rounded-xl border border-black/10 overflow-hidden flex flex-col bg-white h-full",
 	imageWrapperClassName = "relative w-full",
-	imageClassName = "object-cover",
+	imageClassName = "",
 	titleClassName = "text-base font-[sora] text-black leading-none p-4 pb-0",
 	descriptionClassName = "text-sm text-zinc-600 p-4 pt-2 leading-[1.2]",
 	sizes = "(max-width: 768px) 90vw, 320px",
+	textAlign = "left",
+	imageFit = "cover",
 }: ImageCarouselProps) {
 	const scrollRef = useRef<HTMLDivElement>(null);
 	const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -96,15 +116,14 @@ export default function ImageCarousel({
 						: "flex flex-wrap items-stretch justify-center gap-4"
 				}
 			>
-				{items.map((item, index) => (
-					<div
-						key={index}
-						className={showControls ? "shrink-0 snap-start h-auto" : "h-auto"}
-						style={{
-							width: cardWidth,
-						}}
-					>
-						<div className={cardClassName}>
+				{items.map((item, index) => {
+					const align = TEXT_ALIGN_CLASS[item.textAlign ?? textAlign];
+					const fit = IMAGE_FIT_CLASS[item.imageFit ?? imageFit];
+					const wrapperClassName = showControls ? "shrink-0 snap-start h-auto" : "h-auto";
+					const hoverScaleClass = item.hoverScale ? "hover:dynamic-border hover:scale-105 transition-transform duration-300" : "";
+
+					const cardContent = (
+						<div className={`${cardClassName} ${hoverScaleClass}`}>
 							{/* Image */}
 							<div
 								className={imageWrapperClassName}
@@ -117,17 +136,42 @@ export default function ImageCarousel({
 									alt={item.alt}
 									fill
 									sizes={sizes}
-									className={imageClassName}
+									className={`${fit} ${imageClassName}`}
 								/>
 							</div>
 
 							{/* Content */}
-							<p className={titleClassName}>{item.title}</p>
+							<p className={`${titleClassName} ${align}`}>{item.title}</p>
 
-							<p className={`${descriptionClassName} flex-1`}>{item.description}</p>
+							<p className={`${descriptionClassName} flex-1 ${align}`}>
+								{item.description}
+							</p>
 						</div>
-					</div>
-				))}
+					);
+
+					return item.href ? (
+						<Link
+							key={index}
+							href={item.href}
+							className={wrapperClassName}
+							style={{
+								width: cardWidth,
+							}}
+						>
+							{cardContent}
+						</Link>
+					) : (
+						<div
+							key={index}
+							className={wrapperClassName}
+							style={{
+								width: cardWidth,
+							}}
+						>
+							{cardContent}
+						</div>
+					);
+				})}
 			</div>
 
 			{/* Controls */}
