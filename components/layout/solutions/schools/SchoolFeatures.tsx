@@ -61,7 +61,7 @@ export default function SchoolFeatures() {
 				</motion.h1>
 
 				{SCHOOL_FEATURES.map((feature, i) => (
-					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={i % 2 !== 0} />
+					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={false} />
 				))}
 			</div>
 
@@ -79,7 +79,7 @@ export default function SchoolFeatures() {
 				</motion.h1>
 
 				{SCHOOL_FEATURES_2.map((feature, i) => (
-					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={i % 2 !== 0} />
+					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={true} />
 				))}
 			</div>
 		</div>

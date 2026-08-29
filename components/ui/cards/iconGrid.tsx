@@ -44,14 +44,17 @@ function IconGridMedia({ src, alt, isVideo }: { src: string; alt: string; isVide
 
 function IconGrid({ items }: { items: IconGridItem[] }) {
 	return (
-		<div className="h-full w-1/2 rounded-3xl grid grid-cols-2 grid-rows-3 place-items-center gap-x-12 gap-y-10 p-8">
+		<div className="h-full w-1/2 rounded-3xl grid grid-cols-2 grid-rows-3 gap-x-12 gap-y-10 p-8">
 			{items.map((item, i) => (
-				<div key={i} className="flex flex-col items-center gap-3 text-center">
+				<div
+					key={i}
+					className="w-full h-full flex flex-col items-center justify-center gap-3 text-center rounded-xl hover:bg-black/5 group duration-100"
+				>
 					<span className="dynamic-border h-16 w-16 rounded-full bg-black/5 flex items-center justify-center shrink-0">
 						{item.icon ? (
-							<item.icon className="h-7 w-7 text-black" strokeWidth={2} />
+							<item.icon className="h-7 w-7 text-black transition-transform duration-300 group-hover:-translate-y-1" strokeWidth={2} />
 						) : (
-							<span className="text-black text-xs font-bold">{item.badgeText}</span>
+							<span className="text-black text-xs font-bold transition-transform duration-300 group-hover:-translate-y-1">{item.badgeText}</span>
 						)}
 					</span>
 					<div className="flex flex-col gap-1">

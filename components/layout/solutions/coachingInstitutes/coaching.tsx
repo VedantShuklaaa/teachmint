@@ -60,7 +60,7 @@ export default function Coaching() {
 				</motion.h1>
 
 				{COACHING.map((feature, i) => (
-					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={true} />
+					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={false} />
 				))}
 			</div>
 
@@ -78,7 +78,7 @@ export default function Coaching() {
 				</motion.h1>
 
 				{COACHING_2.map((feature, i) => (
-					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={false} />
+					<SafetyFeatureCard key={feature.alt} feature={feature} imageOnRight={true} />
 				))}
 			</div>
 		</div>
