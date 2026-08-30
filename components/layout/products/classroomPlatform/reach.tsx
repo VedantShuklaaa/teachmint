@@ -1,6 +1,6 @@
 "use client";
-import { Lock, Zap, Smartphone } from "lucide-react";
 import Carousel from "@/components/ui/cards/carousel";
+import RollingNumber from "@/components/ui/text/rollingNumber";
 
 const SPECS = [
 	{ title: "20 million+", description: "users served" },
@@ -17,7 +17,7 @@ export default function Reach() {
 				className="!gap-0 !py-0"
 				renderItem={({ title, description }) => (
 					<div className="h-50 w-80 border border-black/10 rounded-xl bg-black/5 p-6 flex flex-col items-center justify-center gap-2 relative">
-						<h3 className="text-3xl font-[sora]">{title}</h3>
+						<RollingNumber value={title} className="text-3xl font-[sora]" />
 						<p className="text-lg text-zinc-800 font-inter font-light leading-[1.2]">{description}</p>
 					</div>
 				)}

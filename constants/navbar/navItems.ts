@@ -43,7 +43,7 @@ const deviceItems: NavItem[] = [
 const solutionItems: NavItem[] = [
 	{ kind: "icon", href: "/solutions/schools", title: "Schools", description: "Online, hybrid, or in-person, X is for every possible learning environment.", icon: BookTextIcon },
 	{ kind: "icon", href: "/solutions/higher-education", title: "Higher Education", description: "Help lecturers and teaching professionals to deliver educational excellence.", icon: GraduationCapIcon },
-	{ kind: "icon", href: "/solutions/coaching", title: "Coaching", description: "Level up your teaching with our Classroom Platform.", icon: UserIcon },
+	{ kind: "icon", href: "/solutions/coaching-institutes", title: "Coaching", description: "Level up your teaching with our Classroom Platform.", icon: UserIcon },
 ];
 
 export const categoryItems: Record<string, NavItem[]> = {

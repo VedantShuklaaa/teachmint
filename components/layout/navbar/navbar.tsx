@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 import { Button } from "@/components/ui/button/button";
@@ -16,6 +15,9 @@ import { deviceHeroImages, CAROUSEL_INTERVAL_MS } from "@/constants/navbar/devic
 import { CLOSED_WIDTH, OPEN_WIDTH, WIDTH_DURATION, PANEL_SHOW_DELAY_MS, ICON_ANIMATION_INTERVAL_MS } from "@/constants/navbar/config";
 import { ChevronDown } from "lucide-react";
 import TransitionLink from "@/components/ui/links/transitionLink";
+import { usePathname } from "next/navigation";
+
+const HIDDEN_ROUTES = ["/login", "/checkout"];
 
 export interface NavbarProps {
 	trigger?: "onClick" | "onHover";
@@ -29,6 +31,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 	const isOpen = activeKey !== null;
 	const isHoverMode = trigger === "onHover";
 	const activeItems = activeKey ? categoryItems[activeKey] : null;
+	const pathname = usePathname();
 
 	useEffect(() => {
 		if (!isOpen) {
@@ -74,6 +77,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 		setActiveKey(null);
 	}
 
+	if (HIDDEN_ROUTES.includes(pathname)) return null;
 	return (
 		<header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-full px-4 flex justify-center">
 			<motion.nav
@@ -87,7 +91,7 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 					y: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
 				}}
 				style={{ maxWidth: "calc(100vw - 2rem)", willChange: "width, transform" }}
-				className="overflow-hidden rounded-xl border border-black/10 bg-black/5 backdrop-blur-sm shadow-sm"
+				className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm"
 			>
 				<div className="grid grid-cols-3 items-center px-6 py-3">
 					<TransitionLink
@@ -140,12 +144,16 @@ export function Navbar({ trigger = "onClick" }: NavbarProps) {
 					</div>
 
 					<div className="flex items-center justify-end gap-3">
-						<Button variant="secondary" size="md" className="cursor-pointer">
-							Sign up
-						</Button>
-						<Button variant="primary" size="md" className="cursor-pointer bg-black">
-							Shop Now
-						</Button>
+						<TransitionLink href="/login">
+							<Button variant="secondary" size="md" className="cursor-pointer">
+								Log in
+							</Button>
+						</TransitionLink>
+						<TransitionLink href="/shop">
+							<Button variant="primary" size="md" className="cursor-pointer bg-black">
+								Shop Now
+							</Button>
+						</TransitionLink>
 					</div>
 				</div>
 
@@ -387,12 +395,12 @@ function DeviceHeroCarousel() {
 				</div>
 			</div>
 			<div className="h-[40%] px-4 py-3 flex items-center justify-center">
-				<Link
+				<TransitionLink
 					href="/devices"
 					className={buttonVariants({ variant: "primary", size: "lg", className: "bg-black" })}
 				>
 					Explore all devices
-				</Link>
+				</TransitionLink>
 			</div>
 		</div>
 	);

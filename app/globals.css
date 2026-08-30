@@ -20,6 +20,8 @@
   --font-sora: var(--font-sora);
   --font-times: var(--font-times);
   --font-arial: Arial, Helvetica, sans-serif;
+
+  --animate-gradient: gradient-move 8s ease infinite;
 }
 
 .dark {
@@ -122,4 +124,33 @@ html[data-vt-variant="polygon"]::view-transition-new(root) {
   background-image: url("/texture/texture.jpg");
   background-repeat: repeat;
   opacity: 0.1;
+}
+
+@keyframes hover-bounce {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.hover-bounce {
+  animation: hover-bounce 0.5s ease;
+}
+
+
+@keyframes gradient-move {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
 }

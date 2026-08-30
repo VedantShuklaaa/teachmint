@@ -7,6 +7,8 @@ const galleryItems: ImageCarouselItem[] = [
 	{
 		src: "/products/DBT/k-12.webp",
 		alt: "Teachmint - K12",
+		href: "/solutions/schools",
+		hoverScale: true,
 		title: "K-12",
 		description:
 			"Online, hybrid, or in-person, X2 is for every possible learning environment.",
@@ -14,6 +16,8 @@ const galleryItems: ImageCarouselItem[] = [
 	{
 		src: "/products/DBT/coaching.webp",
 		alt: "Teachmint - Coaching",
+		hoverScale: true,
+		href: "/solutions/coaching-institutes",
 		title: "Coaching",
 		description:
 			"Level up your teaching with our AI-Powered Classroom Platform.",
@@ -21,6 +25,8 @@ const galleryItems: ImageCarouselItem[] = [
 	{
 		src: "/products/DBT/higher-edu.webp",
 		alt: "Teachmint - Higher Education",
+		hoverScale: true,
+		href: "/solutions/higher-education",
 		title: "Higher Education",
 		description:
 			"Help lecturers and teachers to deliver educational excellence.",

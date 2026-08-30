@@ -1,4 +1,5 @@
 "use client";
+import DotField from "@/components/ui/background/dynamicDotsBackground";
 import { Button } from "@/components/ui/button/button";
 import { motion } from "motion/react";
 import Image from "next/image";
@@ -11,7 +12,25 @@ export default function ClickXIntro() {
 		<div className="w-[70vw] mx-auto flex flex-col items-center py-20 gap-15">
 			<div className="flex gap-10">
 				<div className={`h-170 w-120 p-4 rounded-xl flex flex-col items-center overflow-hidden relative gap-10`}>
-					<div className="flex flex-col gap-4">
+					<motion.div
+						className="absolute inset-0 rounded-xl border-2 border-black/10 pointer-events-none z-30"
+						initial={{ clipPath: "inset(0% 0% 100% 0%)" }}
+						animate={{
+							clipPath: [
+								"inset(0% 0% 100% 0%)",
+								"inset(0% 0% 0% 0%)",
+								"inset(100% 0% 0% 0%)",
+							],
+						}}
+						transition={{
+							duration: 1.6,
+							delay: CONTAINER_DURATION,
+							times: [0, 0.5, 1],
+							ease: ["easeInOut", "easeInOut"],
+						}}
+					/>
+
+					<div className="flex flex-col gap-4 z-20">
 						<motion.h1
 							initial={{ y: 60, opacity: 0 }}
 							animate={{ y: 0, opacity: 1 }}
@@ -38,7 +57,7 @@ export default function ClickXIntro() {
 						</motion.p>
 					</div>
 
-					<div className="flex flex-col gap-4 w-full">
+					<div className="flex flex-col gap-4 w-full z-20">
 						<div className="text-lg text-zinc-700 max-w-2xl font-inter font-light text-left leading-[1.2] flex flex-col gap-3 items-start w-full">
 							<p>100% student participation</p>
 							<p>Instant understanding insights</p>
@@ -61,6 +80,14 @@ export default function ClickXIntro() {
 						</motion.div>
 					</div>
 
+					<div className="h-1/2 w-full relative">
+						<DotField
+							dotOpacity={1}
+							dotColor="black"
+							sparkle
+							fadeSize={30}
+						/>
+					</div>
 				</div>
 
 				<div className={`dynamic-border bg-black/5 h-170 w-120 rounded-xl flex flex-col items-center overflow-hidden p-[1] gap-5`}>

@@ -18,6 +18,6 @@ export const categoryInfo: Record<string, { title: string; description: string; 
 	solutions: {
 		title: "Solution",
 		description: "Develop your teaching brand for long term success.",
-		href: "/products/classroom-platform"
+		href: "/solutions/digital-board-for-teaching"
 	},
 };
