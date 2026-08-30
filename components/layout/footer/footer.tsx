@@ -21,7 +21,7 @@ const COMPANY_LINKS = [
 ];
 
 const RESOURCE_LINKS = [
-	{ label: "Technical Blog", href: "/blog/technical" },
+	{ label: "Technical Blog", href: "/techblogs" },
 	{ label: "Case Study", href: "/case-study" },
 	{ label: "Product Policy", href: "/product-policy" },
 	{ label: "Brochure", href: "/brochure" },
